@@ -1,0 +1,96 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <h4>Register</h4>
+
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="registrationForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input
+            type="text"
+            name="forenames"
+            formControlName="forenames"
+            class="form-control"
+            placeholder="Forenames"
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid': message && message.forenames }"
+          />
+          <span class="invalid-feedback">
+            <span>
+              {{ message.forenames }}
+            </span>
+          </span>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="surname"
+            formControlName="surname"
+            class="form-control"
+            placeholder="Surname"
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid': message && message.surname }"
+          />
+          <span class="invalid-feedback">
+            <span>
+              {{ message.surname }}
+            </span>
+          </span>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Email"
+            autocomplete="off"
+            [ngClass]="{ 'is-invalid': message && message.email }"
+          />
+          <span class="invalid-feedback">
+            <span>
+              {{ message.email }}
+            </span>
+          </span>
+        </div>
+
+        <div formGroupName="passwords">
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Password"
+              autocomplete="off"
+              [ngClass]="{ 'is-invalid': message && message.password }"
+            />
+            <span class="invalid-feedback">
+              <span>
+                {{ message.password }}
+              </span>
+            </span>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              name="confirmPass"
+              formControlName="confirmPass"
+              class="form-control"
+              placeholder="Confirm Password"
+              autocomplete="off"
+              [ngClass]="{ 'is-invalid': message && message.passwords }"
+            />
+            <span class="invalid-feedback">
+              <span>
+                {{ message.passwords }}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary">Register</button>
+        <a routerLink="/login">Login Instead</a>
+      </form>
+    </div>
+  </div>
+</div>
