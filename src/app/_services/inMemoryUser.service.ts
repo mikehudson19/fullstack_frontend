@@ -16,8 +16,8 @@ export class InMemoryUserService {
 
   constructor(private _http: HttpClient) { }
 
-  getUsers(): Observable<Object[]> {
-    return this._http.get<Object[]>(this.userUrl).pipe()
+  getUsers(): Observable<User[]> {
+    return this._http.get<User[]>(this.userUrl).pipe()
   }
 
   getUser(id: number): Observable<Object> {

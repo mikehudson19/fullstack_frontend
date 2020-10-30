@@ -3,14 +3,14 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">Home</a>
         <a class="nav-item nav-link" routerLink="/">Homes for sale</a>
-        <a class="nav-item nav-link" routerLink="/">Sell a house</a>
-        <a class="nav-item nav-link" routerLink="/">Login</a>
-        <a class="nav-item nav-link" routerLink="/registration">Register</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" routerLink="/sell">Sell a house</a>
+        <a class="nav-item nav-link" routerLink="/" *ngIf="!currentUser">Login</a>
+        <a class="nav-item nav-link" routerLink="/registration" *ngIf="!currentUser">Register</a>
+        <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
     </div>
 </nav>
 
-<nav class="navbar navbar-expand navbar-dark bg-primary">
+<nav class="navbar navbar-expand navbar-dark bg-primary" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">My Ads</a>
         <a class="nav-item nav-link" routerLink="/">My Profile</a>
@@ -22,7 +22,7 @@
     </div>
 </nav>
 
-<nav class="navbar navbar-expand navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/home">User Management</a>
         <a class="nav-item nav-link" routerLink="/">Advert Management</a>

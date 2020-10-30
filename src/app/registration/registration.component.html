@@ -3,7 +3,7 @@
 
   <div class="card">
     <div class="card-body">
-      <form [formGroup]="registrationForm" novalidate (ngSubmit)="onSubmit()">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <input
             type="text"
@@ -88,9 +88,10 @@
           </div>
         </div>
 
-        <button class="btn btn-primary">Register</button>
-        <a routerLink="/login">Login Instead</a>
+        <button type="submit" name="submit" class="btn btn-primary" >Register</button>
       </form>
+      <a routerLink="/login">Login Instead</a>
+
     </div>
   </div>
 </div>

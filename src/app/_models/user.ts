@@ -1,10 +1,6 @@
-﻿export class User {
-    // id: number;
-    // username: string;
-    // password: string;
-    // firstName: string;
-    // lastName: string;
-    // token?: string;
+﻿import { IUser } from './IUser';
+
+export class User implements IUser {
 
     constructor(
         public id: number,

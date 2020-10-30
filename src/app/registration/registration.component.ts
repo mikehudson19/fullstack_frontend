@@ -9,6 +9,7 @@ import { debounceTime } from "rxjs/operators";
   templateUrl: "./registration.component.html",
   styleUrls: ["./registration.component.scss"],
 })
+
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   message: { [key: string]: string } = {};
@@ -149,18 +150,19 @@ export class RegistrationComponent implements OnInit {
     return messages;
   }
 
-  onSubmit() {
+  onSubmit(): void {
+
     const user = new User(
       1,
       this.registrationForm.get('forenames').value,
       this.registrationForm.get('surname').value,
       this.registrationForm.get('email').value,
-      this.registrationForm.get('password').value,
-      this.registrationForm.get('confirmPass').value
+      this.registrationForm.get('passwords.password').value,
+      this.registrationForm.get('passwords.confirmPass').value
     );
 
     console.log(user);
 
-    this._myInMemService.saveUser(user);
   }
+
 }
