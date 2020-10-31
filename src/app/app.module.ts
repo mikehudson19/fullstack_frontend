@@ -24,7 +24,7 @@ import { MyInMemoryService } from './_services/my-in-memory.service';
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
+        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
         AppRoutingModule
     ],
     declarations: [

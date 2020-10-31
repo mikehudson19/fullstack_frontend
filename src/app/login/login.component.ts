@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['myadverts']);
                 },
                 error => {
                     this.error = error;
@@ -62,7 +62,5 @@ export class LoginComponent implements OnInit {
                 });
     }
 
-    onClick(): void {
-        console.log('clicked');
-    }
+
 }

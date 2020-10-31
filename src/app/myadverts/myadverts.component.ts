@@ -24,4 +24,5 @@ export class MyAdvertsComponent {
             this.users = users;
         });
     }
+
 }

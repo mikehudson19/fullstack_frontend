@@ -4,7 +4,7 @@
         <a class="nav-item nav-link" routerLink="/home">Home</a>
         <a class="nav-item nav-link" routerLink="/">Homes for sale</a>
         <a class="nav-item nav-link" routerLink="/sell">Sell a house</a>
-        <a class="nav-item nav-link" routerLink="/" *ngIf="!currentUser">Login</a>
+        <a class="nav-item nav-link" routerLink="/login" *ngIf="!currentUser">Login</a>
         <a class="nav-item nav-link" routerLink="/registration" *ngIf="!currentUser">Register</a>
         <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
     </div>

@@ -1,9 +1,9 @@
 <div class="col-md-6 offset-md-3 mt-5">
-  <h4>Register</h4>
+  <h4 class="text-center">Register</h4>
 
-  <div class="card">
+  <div>
     <div class="card-body">
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="text-center">
         <div class="form-group">
           <input
             type="text"
@@ -88,8 +88,11 @@
           </div>
         </div>
 
-        <button type="submit" name="submit" class="btn btn-primary" >Register</button>
+        <button type="submit" name="submit" class="btn btn-primary">Register</button>
+        <span class="alert alert-danger" *ngIf="invalidSubmit" >Please ensure all fields are completed correctly before registering.</span>
+
       </form>
+    
       <a routerLink="/login">Login Instead</a>
 
     </div>

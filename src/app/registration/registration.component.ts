@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidators } from "@app/_helpers/customValidators";
 import { User } from '@app/_models/user';
+import { UserService } from '@app/_services';
 import { InMemoryUserService } from '@app/_services/inMemoryUser.service';
 import { debounceTime } from "rxjs/operators";
 
@@ -13,6 +14,7 @@ import { debounceTime } from "rxjs/operators";
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   message: { [key: string]: string } = {};
+  invalidSubmit: boolean = false;
 
   validationMessages: {} = {
     forenames: {
@@ -55,7 +57,8 @@ export class RegistrationComponent implements OnInit {
   };
 
   constructor(private _formBuilder: FormBuilder,
-              private _myInMemService: InMemoryUserService) {}
+              private _myInMemService: InMemoryUserService,
+              private _userService: UserService) {}
 
   ngOnInit(): void {
     this.registrationForm = this._formBuilder.group({
@@ -152,8 +155,12 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(): void {
 
+    if (!this.registrationForm.valid) {
+      this.invalidSubmit = true;
+      return;
+    }
+
     const user = new User(
-      1,
       this.registrationForm.get('forenames').value,
       this.registrationForm.get('surname').value,
       this.registrationForm.get('email').value,
@@ -163,6 +170,16 @@ export class RegistrationComponent implements OnInit {
 
     console.log(user);
 
+    this._userService.createUser(user).pipe().subscribe(data => {
+      console.log(data);
+    })
+
+  }
+
+  onClick(): void {
+    this._userService.getAll().pipe().subscribe(data => {
+      console.log(data);
+    })
   }
 
 }
