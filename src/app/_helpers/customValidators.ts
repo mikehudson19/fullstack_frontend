@@ -11,6 +11,15 @@ export class CustomValidators {
       return null;
     }
 
+    static multipleSpaceValidator(
+      control: AbstractControl
+      ): { [key: string]: boolean } | null {
+        if (/[\s][\s]/.test(control.value)) {
+          return { 'multipleSpaceValidator': true };
+        }
+        return null;
+      }
+
     static spaceStartValidator(
       control: AbstractControl
     ): { [key: string]: boolean } | null {
@@ -21,7 +30,7 @@ export class CustomValidators {
     }
 
     static noSpecialChars (control: AbstractControl): { [key: string]: boolean } | null {
-      if (/[!@#$%^&*(),.?":{}|<>]/g.test(control.value)) {
+      if (/[!@#$%^&*(),.?":{}|<>±§_+~`=\/]/g.test(control.value)) {
         return { 'noSpecialChar' : true }
       }
       return null;

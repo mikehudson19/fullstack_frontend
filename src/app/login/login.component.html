@@ -2,7 +2,7 @@
  
   <h4 class="text-center">Login</h4>
 
-  <div class="card">
+  <div>
     <div class="card-body">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -10,11 +10,11 @@
             type="email"
             formControlName="email"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            [ngClass]="{ 'is-invalid': message && message.email }"
             placeholder="Email"
           />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email address is required</div>
+          <div class="invalid-feedback">
+            <div>{{ message.email }}</div>
           </div>
         </div>
         <div class="form-group">
@@ -22,14 +22,14 @@
             type="password"
             formControlName="password"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            [ngClass]="{ 'is-invalid': message && message.password }"
             placeholder="Password"
           />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
+          <div class="invalid-feedback">
+            <div>{{ message.password }}</div>
           </div>
         </div>
-        <button [disabled]="loading" class="btn btn-primary">
+        <button [disabled]="loading" class="btn btn-secondary">
           <span
             *ngIf="loading"
             class="spinner-border spinner-border-sm mr-1"
@@ -37,12 +37,13 @@
           Login
         </button>
 
-        <a routerLink="/registration">Register Instead</a>
 
-        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+        <div *ngIf="error" class="alert alert-danger mt-3">
           {{ error }}
         </div>
       </form>
+      <a class="mt-3 text-dark" routerLink="/registration">Register Instead</a>
+
     </div>
   </div>
 </div>

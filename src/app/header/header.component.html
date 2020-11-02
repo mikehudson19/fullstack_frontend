@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark text-primary">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link text-light" routerLink="/home">Home</a>
+      <a class="nav-item nav-link text-light" routerLink="/">Homes for sale</a>
+      <a class="nav-item nav-link text-light" routerLink="/sell">Sell a house</a>
+      <a class="nav-item nav-link text-light" routerLink="/login" *ngIf="!currentUser">Login</a>
+      <a class="nav-item nav-link text-light" routerLink="/registration" *ngIf="!currentUser">Register</a>
+      <a class="nav-item nav-link text-light" (click)="logout()" *ngIf="currentUser">Logout</a>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand navbar-dark bg-primary" *ngIf="currentUser">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link text-light" routerLink="/home">My Ads</a>
+      <a class="nav-item nav-link text-light" routerLink="/">My Profile</a>
+      <a class="nav-item nav-link text-light" routerLink="/">Buy a House</a>
+      <a class="nav-item nav-link text-light" routerLink="/">Sell a House</a>
+      <a class="nav-item nav-link text-light" routerLink="/">Manage Account</a>
+      <a class="nav-item nav-link text-light" routerLink="/">My Seller Profile</a>
+      <a class="nav-item nav-link text-light" routerLink="/">Favourite Houses</a>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="currentUser">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link text-dark" routerLink="/home">User Management</a>
+      <a class="nav-item nav-link text-dark" routerLink="/">Advert Management</a>
+  </div>
+</nav>

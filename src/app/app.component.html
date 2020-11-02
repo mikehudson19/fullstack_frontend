@@ -1,42 +1,10 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/">Homes for sale</a>
-        <a class="nav-item nav-link" routerLink="/sell">Sell a house</a>
-        <a class="nav-item nav-link" routerLink="/login" *ngIf="!currentUser">Login</a>
-        <a class="nav-item nav-link" routerLink="/registration" *ngIf="!currentUser">Register</a>
-        <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
-    </div>
-</nav>
-
-<nav class="navbar navbar-expand navbar-dark bg-primary" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/home">My Ads</a>
-        <a class="nav-item nav-link" routerLink="/">My Profile</a>
-        <a class="nav-item nav-link" routerLink="/">Buy a House</a>
-        <a class="nav-item nav-link" routerLink="/">Sell a House</a>
-        <a class="nav-item nav-link" routerLink="/">Manage Account</a>
-        <a class="nav-item nav-link" routerLink="/">My Seller Profile</a>
-        <a class="nav-item nav-link" routerLink="/">Favourite Houses</a>
-    </div>
-</nav>
-
-<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/home">User Management</a>
-        <a class="nav-item nav-link" routerLink="/">Advert Management</a>
-    </div>
-</nav>
+<app-header></app-header>
 
 <!-- main app container -->
-<div class="container">
+<div class="container" >
     <router-outlet></router-outlet>
 </div>
 
 <!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        This is the placeholder foooter.
-    </p>
-</div>
+<app-footer class="mt-auto"></app-footer>

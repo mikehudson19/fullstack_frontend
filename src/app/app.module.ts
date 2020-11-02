@@ -6,7 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomValidators } from './_helpers/customValidators';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+// import { fakeBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +17,10 @@ import { LoginComponent } from './login';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MyInMemoryService } from './_services/my-in-memory.service';
-
+import { MyInMemoryService } from './_services/my-in-memory.service';;
+import { FooterComponent } from './footer/footer.component'
+;
+import { HeaderComponent } from './header/header.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -30,16 +32,17 @@ import { MyInMemoryService } from './_services/my-in-memory.service';
     declarations: [
         AppComponent,
         MyAdvertsComponent,
-        LoginComponent
-,
+        LoginComponent,
         HomeComponent ,
-        RegistrationComponent   ],
+        RegistrationComponent ,
+        FooterComponent ,
+        HeaderComponent ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })
