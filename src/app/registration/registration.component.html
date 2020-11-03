@@ -2,7 +2,7 @@
   <h4 class="text-center">Register</h4>
 
   <div>
-    <div class="card-body" >
+    <div class="card-body">
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <input
@@ -20,6 +20,7 @@
             </span>
           </span>
         </div>
+
         <div class="form-group">
           <input
             type="text"
@@ -55,36 +56,75 @@
 
         <div formGroupName="passwords">
           <div class="form-group">
-            <input
-              type="password"
-              name="password"
-              formControlName="password"
-              class="form-control"
-              placeholder="Password"
-              autocomplete="off"
-              [ngClass]="{ 'is-invalid': message && message.password }"
-            />
-            <span class="invalid-feedback">
-              <span>
-                {{ message.password }}
+            <div class="input-group">
+              <input
+                [type]="fieldTextType ? 'text' : 'password'"
+                name="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Password"
+                autocomplete="off"
+                [ngClass]="{ 'is-invalid': message && message.password }"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <a
+                    ><i
+                      (click)="toggleFieldTextType()"
+                      class="fa"
+                      [ngClass]="{
+                        'fa-eye-slash': !fieldTextType,
+                        'fa-eye': fieldTextType
+                      }"
+                    ></i
+                  ></a>
+                </span>
+              </div>
+              <span class="invalid-feedback">
+                <span>
+                  {{ message.password }}
+                </span>
               </span>
-            </span>
+            </div>
+
+            <a class="form-text text-muted" (click)="showPassRequirements()"
+              ><small>
+                {{ passRequirements ? "Hide" : "View" }} password requirements.
+              </small></a
+            >
           </div>
+
           <div class="form-group">
-            <input
-              type="password"
-              name="confirmPass"
-              formControlName="confirmPass"
-              class="form-control"
-              placeholder="Confirm Password"
-              autocomplete="off"
-              [ngClass]="{ 'is-invalid': message && message.passwords }"
-            />
-            <span class="invalid-feedback">
-              <span>
-                {{ message.passwords }}
+            <div class="input-group">
+              <input
+                [type]="fieldTextType ? 'text' : 'password'"
+                name="confirmPass"
+                formControlName="confirmPass"
+                class="form-control"
+                placeholder="Confirm Password"
+                autocomplete="off"
+                [ngClass]="{ 'is-invalid': message && message.passwords }"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <a
+                    ><i
+                      (click)="toggleFieldTextType()"
+                      class="fa"
+                      [ngClass]="{
+                        'fa-eye-slash': !fieldTextType,
+                        'fa-eye': fieldTextType
+                      }"
+                    ></i
+                  ></a>
+                </span>
+              </div>
+              <span class="invalid-feedback">
+                <span>
+                  {{ message.passwords }}
+                </span>
               </span>
-            </span>
+            </div>
           </div>
         </div>
 
@@ -93,12 +133,38 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm mr-1"
           ></span>
-          Register</button>
-        <div class="alert alert-danger mt-3" *ngIf="invalidSubmit" >Please ensure all fields are completed correctly.</div>
+          {{ loading ? "Registering" : "Register" }}
+        </button>
 
+        <div class="alert alert-danger mt-3" *ngIf="invalidSubmit">
+          Please ensure all fields are completed correctly.
+        </div>
       </form>
-    
-      <a class="mt-3 text-dark" routerLink="/login">Login Instead</a>
+
+      <div class="mt-3">
+        <a class="mt-3 text-dark" routerLink="/login">Login Instead</a>
+      </div>
+
+      <div class="alert alert-info mt-4" *ngIf="passRequirements">
+        <ul>
+          <li>
+            <small
+              >Your password needs to be between 8 and 100 characters in
+              length.</small
+            >
+          </li>
+          <li><small>Your password cannot contain spaces.</small></li>
+          <li>
+            <small>Your password must contain at least one number.</small>
+          </li>
+          <li>
+            <small
+              >Your password must contain at leat one uppercase
+              character.</small
+            >
+          </li>
+        </ul>
+      </div>
 
     </div>
   </div>

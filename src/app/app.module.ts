@@ -6,7 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomValidators } from './_helpers/customValidators';
 
 // used to create fake backend
-// import { fakeBackendProvider } from './_helpers';
+import { fakeBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +26,7 @@ import { HeaderComponent } from './header/header.component'
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
+        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
         AppRoutingModule
     ],
     declarations: [
@@ -42,7 +42,7 @@ import { HeaderComponent } from './header/header.component'
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        // fakeBackendProvider
+        fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

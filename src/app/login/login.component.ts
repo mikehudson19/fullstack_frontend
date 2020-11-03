@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error = "";
   message: { [key: string]: string } = {};
+  fieldTextType: boolean = false;
 
   validationMessages: {} = {
     email: {
@@ -33,20 +34,20 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService,
+    private _formBuilder: FormBuilder,
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _authenticationService: AuthenticationService,
     private _inMemUserService: InMemoryUserService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(["/"]);
+    if (this._authenticationService.currentUserValue) {
+      this._router.navigate(["/"]);
     }
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       email: [
         "",
         [Validators.required,
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this._route.snapshot.queryParams["returnUrl"] || "/";
 
     this.loginForm.valueChanges
       .pipe(debounceTime(600))
@@ -104,12 +105,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService
+    this._authenticationService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(["myadverts"]);
+          this._router.navigate(["myadverts"]);
         },
         (error) => {
           this.error = error;
@@ -119,5 +120,9 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  toggleFieldTextType(): void {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

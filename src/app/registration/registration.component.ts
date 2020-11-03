@@ -1,22 +1,26 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomValidators } from "@app/_helpers/customValidators";
 import { User } from "@app/_models/user";
 import { AuthenticationService, UserService } from "@app/_services";
 import { InMemoryUserService } from "@app/_services/inMemoryUser.service";
+import { Subscription } from 'rxjs';
 import { debounceTime } from "rxjs/operators";
 
 @Component({
   templateUrl: "./registration.component.html",
   styleUrls: ["./registration.component.scss"],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
   registrationForm: FormGroup;
   message: { [key: string]: string } = {};
   invalidSubmit: boolean = false;
   loading: boolean = false;
   error: string = "";
+  passRequirements: boolean = false;
+  fieldTextType: boolean = false;
+  sub: Subscription;
 
   validationMessages: {} = {
     forenames: {
@@ -124,7 +128,7 @@ export class RegistrationComponent implements OnInit {
       ),
     });
 
-    this.registrationForm.valueChanges
+    this.sub = this.registrationForm.valueChanges
       .pipe(debounceTime(600))
       .subscribe(
         (value) => (this.message = this.invalidInputs(this.registrationForm))
@@ -190,21 +194,22 @@ export class RegistrationComponent implements OnInit {
     })
 
     // In Memory API backend for testing
-    // this._myInMemService
-    //   .saveUser(user)
-    //   .pipe()
-    //   .subscribe((data) => {
-    //     console.log(data);
-    //     this._router.navigate(["login"]);
-    //     this.loading = false;
-    //   });
+    this._myInMemService
+      .saveUser(user)
+      .pipe()
+      .subscribe((data) => {
+        console.log(data);
+      });
+
     setTimeout (() => {
       this._authenticationService
-      .login(user.email, user.password)
+      // .login(user.email, user.password) 
+      .login('test@test', 'test') // For when using the fake back end.
       .pipe()
       .subscribe(
         (data) => {
           this._router.navigate(["myadverts"]);
+          this.loading = false;
         },
         (error) => {
           this.error = error;
@@ -222,5 +227,17 @@ export class RegistrationComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  showPassRequirements(): void {
+      this.passRequirements = !this.passRequirements;
+  }
+
+  toggleFieldTextType(): void {
+    this.fieldTextType = !this.fieldTextType;
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
   }
 }

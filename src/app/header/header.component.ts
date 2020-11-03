@@ -12,16 +12,16 @@ export class HeaderComponent {
   currentUser: User;  
 
   constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
+    private _router: Router,
+    private _authenticationService: AuthenticationService
   ) {
-    this.authenticationService.currentUser.subscribe(
+    this._authenticationService.currentUser.subscribe(
       (x) => (this.currentUser = x)
     );
   }
 
   logout() {
-    this.authenticationService.logout();
-    this.router.navigate(["/login"]);
+    this._authenticationService.logout();
+    this._router.navigate(["/login"]);
   }
 }

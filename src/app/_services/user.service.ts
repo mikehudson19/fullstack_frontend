@@ -7,13 +7,13 @@ import { IUser } from '@app/_models/IUser';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+    constructor(private _http: HttpClient) { }
 
     getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/api/users`);
+        return this._http.get<User[]>(`${environment.apiUrl}/api/users`);
     }
 
     createUser(body: IUser) {
-        return this.http.post<IUser>(`${environment.apiUrl}/api/users`, body);
+        return this._http.post<IUser>(`${environment.apiUrl}/api/users`, body);
     }
 }
