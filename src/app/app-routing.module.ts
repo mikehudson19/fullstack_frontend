@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MyAdvertsComponent } from './myadverts';
-import { LoginComponent } from './login';
+import { LoginComponent } from './authentication/login/login.component';
 import { NotAuthGuard } from './_helpers';
 import { HomeComponent } from './home/home.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { AuthGuard } from './_helpers/auth.guard';
+import { RegistrationComponent } from './authentication/registration/registration.component';
+import { AuthGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },

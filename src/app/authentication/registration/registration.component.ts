@@ -194,17 +194,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     })
 
     // In Memory API backend for testing
-    this._myInMemService
-      .saveUser(user)
-      .pipe()
-      .subscribe((data) => {
-        console.log(data);
-      });
+    // this._myInMemService
+    //   .saveUser(user)
+    //   .pipe()
+    //   .subscribe((data) => {
+    //     console.log(data);
+    //   });
 
     setTimeout (() => {
       this._authenticationService
-      // .login(user.email, user.password) 
-      .login('test@test', 'test') // For when using the fake back end.
+      .login(user.email, user.password) 
+      // .login('test@test', 'test') // For when using the fake back end.
       .pipe()
       .subscribe(
         (data) => {
