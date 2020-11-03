@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-// import { fakeBackendProvider } from './_helpers';
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { MyInMemoryService } from './_services/my-in-memory.service';
+import { fakeBackendProvider } from './_helpers';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MyInMemoryService } from './_services/my-in-memory.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,14 +16,15 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component'
 ;
 import { HeaderComponent } from './header/header.component'
-import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthenticationModule } from './authentication/authentication.module';;
+import { TruncateTextPipe } from './truncate-text.pipe'
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         AuthenticationModule,
         HttpClientModule,
-        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
+        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
         AppRoutingModule
     ],
     declarations: [
@@ -31,13 +32,14 @@ import { AuthenticationModule } from './authentication/authentication.module';
         MyAdvertsComponent,
         HomeComponent,
         FooterComponent,
-        HeaderComponent ],
+        HeaderComponent ,
+        TruncateTextPipe],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        // fakeBackendProvider
+        fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })
