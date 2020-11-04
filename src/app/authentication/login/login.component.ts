@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { debounceTime, first } from "rxjs/operators";
 
 import { AuthenticationService } from "@app/_services";
-import { InMemoryUserService } from "@app/_services/inMemoryUser.service";
+import { InMemoryUserService } from "@app/_mockServices/inMemoryUser.service";
 import { CustomValidators } from "@app/_helpers/customValidators";
 
 @Component({

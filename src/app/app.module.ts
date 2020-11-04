@@ -6,7 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MyInMemoryService } from './_services/my-in-memory.service';
+import { MyInMemoryService } from './_mockServices/my-in-memory.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

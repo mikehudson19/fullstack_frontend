@@ -3,8 +3,8 @@ import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
-import { InMemoryUserService } from '../../_services/inMemoryUser.service';
-import { InMemoryAdvertService } from '@app/_services/inMemoryAdvert.service';
+import { InMemoryUserService } from '../../_mockServices/inMemoryUser.service';
+import { InMemoryAdvertService } from '@app/_mockServices/inMemoryAdvert.service';
 
 @Component({ templateUrl: 'myadverts.component.html',
              styleUrls: ["./myadverts.component.scss"],

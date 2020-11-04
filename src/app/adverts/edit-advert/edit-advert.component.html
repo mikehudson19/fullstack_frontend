@@ -28,9 +28,9 @@
           <div class="form-group">
             <select class="custom-select" formControlName="city">
               <option value="" disabled>Choose your city</option>
-              <option *ngFor="let location of locations">
-                {{ location.cities }}
-              </option>
+              <option>Fourways</option>
+              <option>Douglasdale</option>
+              <option>Sandton</option>
             </select>
           </div>
 
@@ -60,6 +60,7 @@
             type="submit"
             name="submit"
             class="btn btn-outline-success btn-lg btn-block"
+            (click)="onSave()"
           >
             Save Changes
           </button>

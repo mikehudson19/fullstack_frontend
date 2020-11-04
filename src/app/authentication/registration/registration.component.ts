@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { CustomValidators } from "@app/_helpers/customValidators";
 import { User } from "@app/_models/user";
 import { AuthenticationService, UserService } from "@app/_services";
-import { InMemoryUserService } from "@app/_services/inMemoryUser.service";
+import { InMemoryUserService } from "@app/_mockServices/inMemoryUser.service";
 import { Subscription } from 'rxjs';
 import { debounceTime } from "rxjs/operators";
 

@@ -22,7 +22,7 @@ export class NotAuthGuard implements CanActivate {
       return true;
     }
     
-    if (route.routeConfig.path == 'sell') {
+    if (route.routeConfig.path == 'editadvert/:id') {
       this.router.navigate(["/registration"]);
       return false;
     }
