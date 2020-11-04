@@ -11,7 +11,7 @@
             <h1 class="card-title h4">{{ advert.price | currency: "ZAR":"symbol-narrow" }}</h1>
             <p class="card-text h5">{{ advert.headline }}</p>
             <p class="card-text">
-              {{ advert.advertDetails | truncateText: 200 }}...
+              {{ advert.advertDetails | truncateText: 200 }}
             </p>
             <p *ngIf="advert.province">{{ advert.province }}, {{ advert.city }}</p>
           </div>
@@ -34,10 +34,10 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a *ngIf="advert.status == 'Live'" class="dropdown-item small" >Hide Advert</a>
-              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small" href="#">Show Advert</a>
+              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small">Show Advert</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item small" href="#">Edit Advert</a>
-              <a class="dropdown-item small" href="#">Delete Advert</a>
+              <a class="dropdown-item small">Edit Advert</a>
+              <a class="dropdown-item small">Delete Advert</a>
             </div>
           </div>
         </div>

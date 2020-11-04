@@ -3,7 +3,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
-import { InMemoryUserService } from '../_services/inMemoryUser.service';
+import { InMemoryUserService } from '../../_services/inMemoryUser.service';
 import { InMemoryAdvertService } from '@app/_services/inMemoryAdvert.service';
 
 @Component({ templateUrl: 'myadverts.component.html',
@@ -14,7 +14,6 @@ export class MyAdvertsComponent implements OnInit {
     loading: boolean = false;
     users: User[];
     adverts: Object;
-    advert: boolean = true;
 
     constructor(private userService: UserService,
                 private _inMemUserService: InMemoryUserService,

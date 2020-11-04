@@ -11,29 +11,28 @@ import { MyInMemoryService } from './_services/my-in-memory.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { MyAdvertsComponent } from './myadverts';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component'
 ;
 import { HeaderComponent } from './header/header.component'
 import { AuthenticationModule } from './authentication/authentication.module';;
-import { TruncateTextPipe } from './_helpers/truncate-text.pipe'
+import { AdvertsModule } from './adverts/adverts.module';
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         AuthenticationModule,
+        AdvertsModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
         AppRoutingModule
     ],
     declarations: [
         AppComponent,
-        MyAdvertsComponent,
         HomeComponent,
         FooterComponent,
-        HeaderComponent ,
-        TruncateTextPipe],
+        HeaderComponent,
+        ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
