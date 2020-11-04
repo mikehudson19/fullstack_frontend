@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component'
 ;
 import { HeaderComponent } from './header/header.component'
 import { AuthenticationModule } from './authentication/authentication.module';;
-import { TruncateTextPipe } from './truncate-text.pipe'
+import { TruncateTextPipe } from './_helpers/truncate-text.pipe'
 @NgModule({
     imports: [
         BrowserModule,

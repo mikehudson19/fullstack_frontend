@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
@@ -10,10 +10,11 @@ import { InMemoryAdvertService } from '@app/_services/inMemoryAdvert.service';
              styleUrls: ["./myadverts.component.scss"],
 })
 
-export class MyAdvertsComponent {
-    loading = false;
+export class MyAdvertsComponent implements OnInit {
+    loading: boolean = false;
     users: User[];
     adverts: Object;
+    advert: boolean = true;
 
     constructor(private userService: UserService,
                 private _inMemUserService: InMemoryUserService,
