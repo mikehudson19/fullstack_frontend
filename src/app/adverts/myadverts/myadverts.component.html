@@ -8,19 +8,29 @@
         </div>
         <div class="col-md-6">
           <div class="card-body">
-            <h1 class="card-title h4">{{ advert.price | currency: "ZAR":"symbol-narrow" }}</h1>
+            <h1 class="card-title h4">
+              {{ advert.price | currency: "ZAR":"symbol-narrow" }}
+            </h1>
             <p class="card-text h5">{{ advert.headline }}</p>
             <p class="card-text">
               {{ advert.advertDetails | truncateText: 200 }}
             </p>
-            <p *ngIf="advert.province">{{ advert.province }}, {{ advert.city }}</p>
+            <p *ngIf="advert.province">
+              {{ advert.province }}, {{ advert.city }}
+            </p>
           </div>
         </div>
         <div
           class="col-md-2 d-flex flex-column justify-content-around align-items-center"
         >
-          <span class="badge py-2 px-3" [ngClass]="{'badge-success': advert.status == 'Live',
-                                          'badge-warning': advert.status == 'Hidden' }" >{{ advert.status }}</span>
+          <span
+            class="badge py-2 px-3"
+            [ngClass]="{
+              'badge-success': advert.status == 'Live',
+              'badge-warning': advert.status == 'Hidden'
+            }"
+            >{{ advert.status }}</span
+          >
           <div class="dropdown">
             <button
               class="btn btn-info btn-sm dropdown-toggle"
@@ -33,10 +43,19 @@
               Actions
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a *ngIf="advert.status == 'Live'" class="dropdown-item small" >Hide Advert</a>
-              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small">Show Advert</a>
+              <a *ngIf="advert.status == 'Live'" class="dropdown-item small"
+                >Hide Advert</a
+              >
+              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small"
+                >Show Advert</a
+              >
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item small">Edit Advert</a>
+              <a class="dropdown-item small" [routerLink]="['/editadvert', advert.id]"
+                >Edit Advert</a
+              >
+              <!-- [routerLink]="['/edit', advert.id, advert.owner] -->
+  <!-- { path: 'edit/:id/:owner', component: EditAdvertComponent, canActivate: [CanEditGuard, NotAuthenticatedGuard], canDeactivate: [UnsavedGuard] }, -->
+
               <a class="dropdown-item small">Delete Advert</a>
             </div>
           </div>

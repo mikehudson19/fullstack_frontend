@@ -24,13 +24,7 @@ export class MyAdvertsComponent implements OnInit {
         this._inMemAdvertService.getAdverts().subscribe(adverts => {
             this.loading = false;
             this.adverts = adverts;
-            console.log(adverts);
         })
-
-        // this.userService.getAll().pipe(first()).subscribe(users => {
-        //     this.loading = false;
-        //     this.users = users;
-        // });
     }
 
 }

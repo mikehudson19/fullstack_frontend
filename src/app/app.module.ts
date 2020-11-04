@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component'
 import { HeaderComponent } from './header/header.component'
 import { AuthenticationModule } from './authentication/authentication.module';;
 import { AdvertsModule } from './adverts/adverts.module';
+
 @NgModule({
     imports: [
         BrowserModule,

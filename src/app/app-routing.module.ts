@@ -7,6 +7,7 @@ import { NotAuthGuard } from './_helpers';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './authentication/registration/registration.component';
 import { AuthGuard } from './authentication/auth.guard';
+import { EditAdvertComponent } from './adverts/edit-advert/edit-advert.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuard] },
     { path: 'sell', component: HomeComponent, canActivate: [NotAuthGuard] },
     { path: 'myadverts', component: MyAdvertsComponent, canActivate: [NotAuthGuard] },
+    { path: 'editadvert/:id', component: EditAdvertComponent, canActivate: [NotAuthGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
@@ -25,3 +27,5 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
