@@ -52,7 +52,8 @@ export class InMemoryAdvertService {
       province: '',
       city: '',
       advertDetails: '',
-      price: null
+      price: null,
+      status: ''
     }
   }
 

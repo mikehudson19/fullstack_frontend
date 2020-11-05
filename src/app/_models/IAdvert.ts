@@ -4,5 +4,6 @@ export interface IAdvert {
   province: string,
   city: string,
   price: number,
-  advertDetails: string
+  advertDetails: string,
+  status: string;
 }

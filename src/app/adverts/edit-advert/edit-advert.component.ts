@@ -85,7 +85,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       this.editAdvertForm.get('province').value.trim(),
       this.editAdvertForm.get('city').value.trim(),
       this.editAdvertForm.get('price').value.trim(),
-      this.editAdvertForm.get('advertDetails').value.trim()
+      this.editAdvertForm.get('advertDetails').value.trim(),
+      'Live'
     );
       
     this._inMemAdService.createAdvert(advert).subscribe({
@@ -106,13 +107,7 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     })
   }
 
-  confirm(): void {
-    if (this.message.includes('delete')) {
-      this.deleteAdvert();
-      this._router.navigate(["myadverts"]);
-      return;
-    }
-
+  onConfirm(): void {
     if (this.editAdvertForm.valid) {
       if (this.id == 0) {
         this.createAdvert();
@@ -129,12 +124,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     }
   }
 
-  cancel(): void {
+  onCancel(): void {
     this.message = '';
-  }
-
-  onDelete(): void {
-    this.message = 'Are you sure you want to delete this advert? This action cannot be undone.';
   }
 
   onSave(): void {

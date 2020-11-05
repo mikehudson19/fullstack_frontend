@@ -8,6 +8,8 @@ export class Advert implements IAdvert {
     public province: string,
     public city: string,
     public price: number,
-    public advertDetails: string
+    public advertDetails: string,
+    public status: string,
+    public id?: number
   ) {}
 }

@@ -1,4 +1,20 @@
 ﻿<div class="mt-4">
+  <div
+    class="alert text-center mt-3"
+    [ngClass]="{ 'alert-danger': message.includes('delete') }"
+    *ngIf="message && message.length > 0"
+  >
+    <div>{{ message }}</div>
+    <div class="mt-2">
+      <button class="btn btn-light btn-sm mx-2 my-1" (click)="onConfirm()">
+        Yes
+      </button>
+      <button class="btn btn-light btn-sm mx-2 my-1" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+
   <h1>My Adverts</h1>
   <div class="mb-3" *ngIf="adverts">
     <a *ngFor="let advert of adverts" class="card my-4">
@@ -43,17 +59,21 @@
               Actions
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a *ngIf="advert.status == 'Live'" class="dropdown-item small"
+              <a *ngIf="advert.status == 'Live'" class="dropdown-item small" (click)="changeStatus(advert.id)"
                 >Hide Advert</a
               >
-              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small"
+              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small" (click)="changeStatus(advert.id)"
                 >Show Advert</a
               >
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item small" [routerLink]="['/editadvert', advert.id]"
+              <a
+                class="dropdown-item small"
+                [routerLink]="['/editadvert', advert.id]"
                 >Edit Advert</a
               >
-              <a class="dropdown-item small">Delete Advert</a>
+              <a class="dropdown-item small" (click)="onDelete(advert.id)"
+                >Delete Advert</a
+              >
             </div>
           </div>
         </div>
