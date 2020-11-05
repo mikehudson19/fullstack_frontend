@@ -29,6 +29,23 @@ export class InMemoryAdvertService {
     return this._http.get<IAdvert>(`${this.advertUrl}/${id}`)
   }
 
+  createAdvert(advert: IAdvert): Observable<IAdvert> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._http.post<IAdvert>(this.advertUrl, advert, { headers });
+  } 
+
+  updateAdvert(advert: IAdvert): Observable<IAdvert> {
+    const headers = new HttpHeaders({ 'Content-Type' : 'application/json' });
+    const url = `${this.advertUrl}/${advert.id}`;
+    return this._http.put<IAdvert>(url, advert, { headers });
+  }
+
+  deleteAdvert(id: number): Observable<IAdvert> {
+    const headers = new HttpHeaders({ 'Content-Type' : 'application/json' });
+    const url = `${this.advertUrl}/${id}`;
+    return this._http.delete<IAdvert>(url, { headers });
+  }
+
   initializeAd(): IAdvert {
     return {
       headline: '',

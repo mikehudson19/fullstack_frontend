@@ -2,7 +2,20 @@
   <div id="login-row" class="row justify-content-center align-items-center">
     <div id="login-column" class="col-md-6">
       <div id="login-box" class="col-md-12">
+
+
+
         <form id="login-form" class="form" novalidate [formGroup]="editAdvertForm">
+
+
+<div class="alert text-center mt-3" [ngClass]="{'alert-danger': message.includes('delete'), 'alert-success': message.includes('save')}" *ngIf="message">
+  <div>{{ message }}</div>
+  <div class="mt-2">
+    <button class="btn btn-light btn-sm mx-2 my-1" (click)="confirm()">Yes</button>
+    <button class="btn btn-light btn-sm mx-2 my-1" (click)="cancel()">Cancel</button>
+  </div>
+</div>
+
           <h3 class="text-center my-4">Edit Advert</h3>
           <div class="form-group">
             <input
@@ -64,7 +77,8 @@
           >
             Save Changes
           </button>
-          <a class="btn btn-outline-danger btn-lg btn-block"> Delete Ad </a>
+          <a class="btn btn-outline-danger btn-lg btn-block"
+             (click)="onDelete()"> Delete Ad </a>
         </form>
       </div>
     </div>
