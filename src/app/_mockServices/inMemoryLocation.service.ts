@@ -11,9 +11,15 @@ export class InMemoryLocationService {
 
   locationUrl: string = 'api/locations'
 
+
   constructor(private _http: HttpClient) { }
 
   getLocations(): Observable<[]> {
     return this._http.get<[]>(this.locationUrl).pipe()
+  }
+
+  getCities(province: string): Observable<[]> {
+    const url = `api/${province}`
+    return this._http.get<[]>(url).pipe()
   }
 }
