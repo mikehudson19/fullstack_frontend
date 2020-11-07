@@ -22,9 +22,10 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   cities: [];
   id: number;
   advert: IAdvert;
-  alertMessage: string = '';
+  actionMessage: string = '';
   isConfirm: boolean = false;
   validationMessage: { [key: string]: string } = {};
+  alertMessage: string = '';
 
   validationMessages: {} = {
     headline: {
@@ -176,16 +177,20 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       }
 
     } else {
-      console.log('Please make sure the form is valid.')
+      this.actionMessage = '';
+      this.alertMessage = 'Please ensure the form is valid.'
+      setTimeout (() => {
+        this.alertMessage = '';
+     }, 2000);
     }
   }
 
   onCancel(): void {
-    this.alertMessage = '';
+    this.actionMessage = '';
   }
 
   onSave(): void {
-    this.alertMessage = 'Are you sure you want to save your changes?';
+    this.actionMessage = 'Are you sure you want to save your changes?';
   }
 
   afterSave(): void {

@@ -12,7 +12,7 @@ export class UserService {
     getAll() {
         return this._http.get<User[]>(`${environment.apiUrl}/api/users`);
     }
-
+ß
     createUser(body: IUser) {
         return this._http.post<IUser>(`${environment.apiUrl}/api/users`, body);
     }

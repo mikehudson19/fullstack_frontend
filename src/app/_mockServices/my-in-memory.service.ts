@@ -46,17 +46,20 @@ export class MyInMemoryService implements InMemoryDbService {
 
 
     const locations = [
-      { province: "Gauteng", cities: ["Menlyn", "Fourways"] },
-      { province: "Eastern Cape", cities: ["Port Elizabeth", "East London"] },
-      { province: "Western Cape", cities: ["Cape Town", "Jeffries Bay"] },
-      { province: "Northern Cape", cities: ["Kimberley", "Upington"] },
-      { province: "Free State", cities: ["Bloemfontein", "Welkom"] },
+      { province: "Gauteng" },
+      { province: "Eastern Cape" },
+      { province: "Western Cape" },
+      { province: "Northern Cape" },
+      { province: "Free State" },
     ];
 
-    const Gauteng = [ 'Fourways', 'Douglasdale', 'Pretoria' ];
+    const Gauteng = [ 'Fourways', 'Pretoria' ];
     const EasternCape = [ 'Port Elizabeth', 'East London' ];
+    const WesternCape = [ 'Cape Town', 'Jeffries Bay' ];
+    const NorthernCape = [ 'Kimberley', 'Upington' ];
+    const FreeState = [ 'Bloemfontein', 'Welkom' ];
 
   
-    return { users, adverts, locations, Gauteng, EasternCape };
+    return { users, adverts, locations, Gauteng, EasternCape, WesternCape, NorthernCape, FreeState };
   }
 }

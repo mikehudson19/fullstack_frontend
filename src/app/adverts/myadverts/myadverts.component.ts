@@ -7,6 +7,7 @@ import { InMemoryUserService } from '../../_mockServices/inMemoryUser.service';
 import { InMemoryAdvertService } from '@app/_mockServices/inMemoryAdvert.service';
 import { Router } from '@angular/router';
 import { IAdvert } from '@app/_models/IAdvert';
+import { AdvertService } from '@app/_services/advert.service';
 
 @Component({ templateUrl: 'myadverts.component.html',
              styleUrls: ["./myadverts.component.scss"],
@@ -23,14 +24,21 @@ export class MyAdvertsComponent implements OnInit {
     constructor(private userService: UserService,
                 private _inMemUserService: InMemoryUserService,
                 private _inMemAdvertService: InMemoryAdvertService,
-                private _router: Router) { }
+                private _router: Router,
+                private _advertService: AdvertService) { }
 
     ngOnInit() {
         this.loading = true;
-        this._inMemAdvertService.getAdverts().subscribe(adverts => {
+        // // In memeory fake back end code
+        // this._inMemAdvertService.getAdverts().subscribe(adverts => {
+        //     this.loading = false;
+        //     this.adverts = adverts;
+        // })   
+
+        this._advertService.getUserAdverts().subscribe(adverts => {
             this.loading = false;
             this.adverts = adverts;
-        })   
+        })
     }
 
     onDelete(advertId: number): void {
