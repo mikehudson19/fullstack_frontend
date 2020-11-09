@@ -9,7 +9,7 @@ export class Advert implements IAdvert {
     public city: string,
     public price: number,
     public advertDetails: string,
-    public status: string,
+    public status?: string,
     public id?: number
   ) {}
 }

@@ -29,7 +29,7 @@ export class MyAdvertsComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
-        // // In memeory fake back end code
+        // // IN MEMORY FAKE BACKEND CALL
         // this._inMemAdvertService.getAdverts().subscribe(adverts => {
         //     this.loading = false;
         //     this.adverts = adverts;
@@ -47,7 +47,14 @@ export class MyAdvertsComponent implements OnInit {
     }
 
     onConfirm(): void {
-        this._inMemAdvertService.deleteAdvert(this.advertToDeleteId).subscribe(data => {
+        // // IN MEMORY FAKE BACKEND CALL
+        // this._inMemAdvertService.deleteAdvert(this.advertToDeleteId).subscribe(data => {
+        //     this._router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+        //         this._router.navigate(['/myadverts']);
+        //     }); 
+        // })
+
+        this._advertService.shadowDeleteAdvert(this.advertToDeleteId).subscribe(data => {
             this._router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
                 this._router.navigate(['/myadverts']);
             }); 
@@ -59,7 +66,28 @@ export class MyAdvertsComponent implements OnInit {
     }
 
     changeStatus(advertToUpdateId: number): void {
-        this._inMemAdvertService.getAdvert(advertToUpdateId).subscribe(advert => {
+        // this._inMemAdvertService.getAdvert(advertToUpdateId).subscribe(advert => {
+        //     this.advert = advert;
+        //     let newStatus;
+        //     if (this.advert.status == 'Live') {
+        //         newStatus = 'Hidden'
+        //     } else {
+        //         newStatus = 'Live'
+        //     }
+
+        // const updatedAdvert = {...this.advert, ...{ 'status': newStatus}}
+   
+        // this._inMemAdvertService.updateAdvert(updatedAdvert).subscribe(data => {
+        //     console.log(data);
+        // })
+
+        // this._inMemAdvertService.getAdverts().subscribe(adverts => {
+        //     this.loading = false;
+        //     this.adverts = adverts;
+        // }) 
+        // })
+
+        this._advertService.getAdvert(advertToUpdateId).subscribe(advert => {
             this.advert = advert;
             let newStatus;
             if (this.advert.status == 'Live') {
@@ -68,16 +96,19 @@ export class MyAdvertsComponent implements OnInit {
                 newStatus = 'Live'
             }
 
-        const updatedAdvert = {...this.advert, ...{ 'status': newStatus}}
-   
-        this._inMemAdvertService.updateAdvert(updatedAdvert).subscribe(data => {
-            console.log(data);
-        })
+            const updatedAdvert = {...this.advert, ...{ 'status': newStatus }}
 
-        this._inMemAdvertService.getAdverts().subscribe(adverts => {
-            this.loading = false;
-            this.adverts = adverts;
-        }) 
+            this._advertService.updateAdvertStatus(updatedAdvert).subscribe(data => {
+                console.log(data)
+            })
+
+            this._advertService.getUserAdverts().subscribe(adverts => {
+                this.loading = false;
+                this.adverts = adverts;
+                this._router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+                    this._router.navigate(['/myadverts']);
+                });
+            })
         })
     }
 }

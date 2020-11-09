@@ -5,5 +5,5 @@ export interface IAdvert {
   city: string,
   price: number,
   advertDetails: string,
-  status: string;
+  status?: string;
 }

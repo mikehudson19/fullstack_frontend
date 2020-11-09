@@ -7,6 +7,7 @@ import { InMemoryLocationService } from '@app/_mockServices/inMemoryLocation.ser
 import { Subscription } from 'rxjs';
 import { Advert } from '@app/_models/advert';
 import { debounceTime } from 'rxjs/operators';
+import { AdvertService } from '@app/_services/advert.service';
 
 @Component({
   selector: 'app-edit-advert',
@@ -53,7 +54,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
               private _formBuilder: FormBuilder,
               private _route: ActivatedRoute,
               private _inMemAdService: InMemoryAdvertService,
-              private _router: Router) { }
+              private _router: Router,
+              private _advertService: AdvertService) { }
 
   ngOnInit(): void {
 
@@ -120,7 +122,13 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   getAdvert(id: number): void {
-    this._inMemAdService.getAdvert(id).subscribe(advert => {
+    // // IN MEMORY FAKE BACK END CALL
+    // this._inMemAdService.getAdvert(id).subscribe(advert => {
+    //   this.advert = advert;
+    //   this.displayAdvert(advert);
+    // })
+
+    this._advertService.getAdvert(id).subscribe(advert => {
       this.advert = advert;
       this.displayAdvert(advert);
     })
@@ -142,25 +150,27 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       this.editAdvertForm.get('province').value.trim(),
       this.editAdvertForm.get('city').value.trim(),
       this.editAdvertForm.get('price').value.trim(),
-      this.editAdvertForm.get('advertDetails').value.trim(),
-      'Live'
+      this.editAdvertForm.get('advertDetails').value.trim()
     );
-      
-    this._inMemAdService.createAdvert(advert).subscribe({
+
+    // // IN MEMORY FAKE BACKEND CALL 
+    // this._inMemAdService.createAdvert(advert).subscribe({
+    //   next: () => this.afterSave()
+    // })
+
+    this._advertService.createAdvert(advert).subscribe({
       next: () => this.afterSave()
     })
   }
 
   updateAdvert(): void {
     const updatedAdvert = { ...this.advert, ...this.editAdvertForm.value }
-    this._inMemAdService.updateAdvert(updatedAdvert).subscribe({
+    // this._inMemAdService.updateAdvert(updatedAdvert).subscribe({
+    //   next: () => this.afterSave()
+    // })
+    console.log('working')
+    this._advertService.updateAdvert(updatedAdvert).subscribe({
       next: () => this.afterSave()
-    })
-  }
-
-  deleteAdvert(): void {
-    this._inMemAdService.deleteAdvert(this.id).subscribe(data => {
-      console.log(data);
     })
   }
 
