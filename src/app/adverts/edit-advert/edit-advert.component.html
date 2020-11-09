@@ -71,10 +71,17 @@
             >
               <option value="" disabled>Choose your province</option>
               <!-- <option *ngFor="let location of locations"> -->
-              <option >
-
+              <option>
                 <!-- {{ location.province }} -->
                 Gauteng
+              </option>
+              <option>
+                <!-- {{ location.province }} -->
+                Eastern Cape
+              </option>
+              <option>
+                <!-- {{ location.province }} -->
+                Western Cape
               </option>
             </select>
             <span class="invalid-feedback">
@@ -91,9 +98,10 @@
               [ngClass]="{
                 'is-invalid': validationMessage && validationMessage.city
               }"
+              *ngIf="cities"
             >
               <option value="" disabled>Choose your city</option>
-              <option >Sandton</option>
+              <option *ngFor="let city of cities"> {{ city }}</option>
             </select>
             <span class="invalid-feedback">
               <span> {{ validationMessage.city }} </span>

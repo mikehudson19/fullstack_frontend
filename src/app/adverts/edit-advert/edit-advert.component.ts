@@ -72,8 +72,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     this.sub.add(this.editAdvertForm.get('province').valueChanges
     .subscribe(
       (value) => {
-        this.province = value.replace(/ +/g, "");
-        this.getCities(); // GETTING AN ERROR FROM THIS METHOD - NEED TO FIX IT BEFORE SUBMITTING. 
+        this.province = value;
+        this.getCities(); 
       }
     )
     );
@@ -109,10 +109,11 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   getCities(): void {
-    this._inMemLocationService.getCities(this.province).subscribe(
-      cities => this.cities = cities,
-      err => console.error(err)
-    )
+    this.locations.forEach(location => {
+      if (location.province == this.province) {
+        this.cities = location.cities;
+      } 
+    })
   }
 
   getLocations(): void {
