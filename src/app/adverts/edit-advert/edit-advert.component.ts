@@ -1,94 +1,126 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IAdvert } from '@app/_models/IAdvert';
-import { InMemoryAdvertService } from '@app/_mockServices/inMemoryAdvert.service';
-import { InMemoryLocationService } from '@app/_mockServices/inMemoryLocation.service';
-import { Subscription } from 'rxjs';
-import { Advert } from '@app/_models/advert';
-import { debounceTime } from 'rxjs/operators';
-import { AdvertService } from '@app/_services/advert.service';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { IAdvert } from "@app/_models/IAdvert";
+import { InMemoryAdvertService } from "@app/_mockServices/inMemoryAdvert.service";
+import { InMemoryLocationService } from "@app/_mockServices/inMemoryLocation.service";
+import { Subscription } from "rxjs";
+import { Advert } from "@app/_models/advert";
+import { debounceTime } from "rxjs/operators";
+import { AdvertService } from "@app/_services/advert.service";
+import { LocationService } from "@app/_services/location.service";
+import { CustomValidators } from '@app/_helpers/customValidators';
 
 @Component({
-  selector: 'app-edit-advert',
-  templateUrl: './edit-advert.component.html',
-  styleUrls: ['./edit-advert.component.scss']
+  selector: "app-edit-advert",
+  templateUrl: "./edit-advert.component.html",
+  styleUrls: ["./edit-advert.component.scss"],
 })
 export class EditAdvertComponent implements OnInit, OnDestroy {
-
   locations = [];
   editAdvertForm: FormGroup;
   sub: Subscription = new Subscription();
-  province: string; 
+  province: string;
   cities: [];
   id: number;
   advert: IAdvert;
-  actionMessage: string = '';
+  actionMessage: string = "";
   isConfirm: boolean = false;
-  validationMessage: { [key: string]: string } = {};
-  alertMessage: string = '';
+  validationMessage: {
+    [key: string]: string;
+  } = {};
+  alertMessage: string = "";
 
   validationMessages: {} = {
     headline: {
-      required: 'An advert headline is required.',
-      minlength: 'Your advert headline must be at least 10 characters long.',
-      maxlength: 'Your advert headline cannot be longer than 100 characters',
+      required: "An advert headline is required.",
+      minlength: "Your advert headline must be at least 10 characters long.",
+      maxlength: "Your advert headline cannot be longer than 100 characters",
+      multipleSpaceValidator: "Your advert headline cannot have consecutive spaces"
     },
     province: {
-      required: 'Your province is required.',
+      required: "Your province is required.",
     },
     city: {
-      required: 'Your city is required.',
+      required: "Your city is required.",
     },
     advertDetails: {
-      required: 'Advert deatils are required.',
-      minlength: 'Your advert details need to be at least 10 characters long.',
-      maxLength: 'Your advert details cannot be longer than 1000 characters.'
+      required: "Advert deatils are required.",
+      minlength: "Your advert details need to be at least 10 characters long.",
+      maxlength: "Your advert details cannot be longer than 1000 characters.",
+      multipleSpaceValidator: "Your advert details cannot have consecutive spaces"
     },
     price: {
-      required: 'An advert price is required.'
-    }
+      required: "An advert price is required.",
+      min: "The minimum advert price is R10 000",
+      max: "The maximum advert price is R100,000,000",
+      noSpaceValidator: "Your price cannot contain spaces"
+    },
   };
 
-  constructor(private _inMemLocationService: InMemoryLocationService,
-              private _formBuilder: FormBuilder,
-              private _route: ActivatedRoute,
-              private _inMemAdService: InMemoryAdvertService,
-              private _router: Router,
-              private _advertService: AdvertService) { }
+  constructor(
+    private _inMemLocationService: InMemoryLocationService,
+    private _formBuilder: FormBuilder,
+    private _route: ActivatedRoute,
+    private _inMemAdService: InMemoryAdvertService,
+    private _router: Router,
+    private _advertService: AdvertService,
+    private _locationService: LocationService
+  ) {}
 
   ngOnInit(): void {
-
     this.editAdvertForm = this._formBuilder.group({
-      headline: ["", [ Validators.required, Validators.minLength(10), Validators.maxLength(100) ]],
-      province: ["", [ Validators.required ]],
-      city: ["", [ Validators.required ]],
-      advertDetails: ["", [ Validators.required, Validators.minLength(10), Validators.maxLength(1000) ]],
-      price: ["", [ Validators.required, Validators.min(10000), Validators.max(100000000) ]]
+      headline: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(100),
+          CustomValidators.multipleSpaceValidator
+        ],
+      ],
+      province: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+      advertDetails: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(1000),
+          CustomValidators.multipleSpaceValidator
+        ],
+      ],
+      price: [
+        "",
+        [Validators.required, Validators.min(10000), Validators.max(100000000), CustomValidators.noSpaceValidator],
+      ],
     });
 
     this.getLocations();
 
-    this.sub.add(this.editAdvertForm.get('province').valueChanges
-    .subscribe(
-      (value) => {
+    this.sub.add(
+      this.editAdvertForm.get("province").valueChanges.subscribe((value) => {
         this.province = value;
-        this.getCities(); 
-      }
-    )
+        this.getCities();
+      })
     );
 
-    // Get the advert ID from the route parameter 
-    this.sub.add(this._route.paramMap.subscribe((params) => {
-      this.id = +params.get('id');
-      this.getAdvert(this.id);
-    })
+    // Get the advert ID from the route parameter
+    this.sub.add(
+      this._route.paramMap.subscribe((params) => {
+        this.id = +params.get("id");
+        this.getAdvert(this.id);
+      })
     );
 
-    this.sub.add(this.editAdvertForm.valueChanges
-      .pipe(debounceTime(600))
-      .subscribe(value => this.validationMessage = this.invalidInputs(this.editAdvertForm)
-      ))
+    this.sub.add(
+      this.editAdvertForm.valueChanges
+        .pipe(debounceTime(600))
+        .subscribe(
+          (value) =>
+            (this.validationMessage = this.invalidInputs(this.editAdvertForm))
+        )
+    );
   }
 
   invalidInputs(formgroup: FormGroup) {
@@ -109,30 +141,26 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   getCities(): void {
-    this.locations.forEach(location => {
+    this.locations.forEach((location) => {
       if (location.province == this.province) {
         this.cities = location.cities;
-      } 
-    })
+      }
+    });
   }
 
   getLocations(): void {
-    this._inMemLocationService.getLocations().subscribe(locations => {
+    // this._inMemLocationService
+    this._locationService.getLocations().subscribe((locations) => {
       this.locations = locations;
-    })
+    });
   }
 
   getAdvert(id: number): void {
-    // // IN MEMORY FAKE BACK END CALL
-    // this._inMemAdService.getAdvert(id).subscribe(advert => {
-    //   this.advert = advert;
-    //   this.displayAdvert(advert);
-    // })
-
-    this._advertService.getAdvert(id).subscribe(advert => {
+    // this._inMemAdService
+    this._advertService.getAdvert(id).subscribe((advert) => {
       this.advert = advert;
       this.displayAdvert(advert);
-    })
+    });
   }
 
   displayAdvert(advert: IAdvert): void {
@@ -141,38 +169,34 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       province: advert.province,
       city: advert.city,
       advertDetails: advert.advertDetails,
-      price: advert.price
-    })
+      price: advert.price,
+    });
   }
 
   createAdvert(): void {
     const advert = new Advert(
-      this.editAdvertForm.get('headline').value.trim(),
-      this.editAdvertForm.get('province').value.trim(),
-      this.editAdvertForm.get('city').value.trim(),
-      this.editAdvertForm.get('price').value.trim(),
-      this.editAdvertForm.get('advertDetails').value.trim()
+      this.editAdvertForm.get("headline").value.trim(),
+      this.editAdvertForm.get("province").value.trim(),
+      this.editAdvertForm.get("city").value.trim(),
+      this.editAdvertForm.get("price").value.trim(),
+      this.editAdvertForm.get("advertDetails").value.trim()
     );
-
-    // // IN MEMORY FAKE BACKEND CALL 
-    // this._inMemAdService.createAdvert(advert).subscribe({
-    //   next: () => this.afterSave()
-    // })
-
+    // this._inMemAdService
     this._advertService.createAdvert(advert).subscribe({
-      next: () => this.afterSave()
-    })
+      next: () => this.afterSave(),
+    });
   }
 
   updateAdvert(): void {
-    const updatedAdvert = { ...this.advert, ...this.editAdvertForm.value }
-    // this._inMemAdService.updateAdvert(updatedAdvert).subscribe({
-    //   next: () => this.afterSave()
-    // })
-    console.log('working')
+    const updatedAdvert = {
+      ...this.advert,
+      ...this.editAdvertForm.value,
+    };
+
+    // this._inMemAdService
     this._advertService.updateAdvert(updatedAdvert).subscribe({
-      next: () => this.afterSave()
-    })
+      next: () => this.afterSave(),
+    });
   }
 
   onConfirm(): void {
@@ -186,28 +210,28 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
         this.updateAdvert();
         return;
       }
-
     } else {
-      this.actionMessage = '';
-      this.alertMessage = 'Please ensure the form is valid.'
-      setTimeout (() => {
-        this.alertMessage = '';
-     }, 2000);
+      this.actionMessage = "";
+      this.alertMessage = "Please ensure the form is valid.";
+      setTimeout(() => {
+        this.alertMessage = "";
+      }, 2000);
     }
   }
 
   onCancel(): void {
-    this.actionMessage = '';
+    this.actionMessage = "";
   }
 
   onSave(): void {
-    this.actionMessage = 'Are you sure you want to save your changes?';
+    this.actionMessage = "Are you sure you want to save your changes?";
   }
 
   afterSave(): void {
+    console.log('working2')
     this.editAdvertForm.markAsPristine;
     this.editAdvertForm.markAsUntouched;
-    this._router.navigate(['/myadverts']);
+    this._router.navigate(["/myadverts"]);
   }
 
   ngOnDestroy(): void {

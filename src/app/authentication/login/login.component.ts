@@ -72,9 +72,7 @@ export class LoginComponent implements OnInit {
 
   invalidInputs(formgroup: FormGroup) {
     let messages = {};
-    console.log(formgroup.controls);
     for (const input in formgroup.controls) {
-        console.log(input);
       const control = formgroup.controls[input];
 
       // If any of the other fields don't meet the requirements, assign error message.

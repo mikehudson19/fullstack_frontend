@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MyInMemoryService } from './_mockServices/my-in-memory.service';
+// import { fakeBackendProvider } from './_helpers';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { MyInMemoryService } from './_mockServices/my-in-memory.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,7 @@ import { AdvertsModule } from './adverts/adverts.module';
         AuthenticationModule,
         AdvertsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
+        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
         AppRoutingModule
     ],
     declarations: [
@@ -39,7 +39,7 @@ import { AdvertsModule } from './adverts/adverts.module';
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

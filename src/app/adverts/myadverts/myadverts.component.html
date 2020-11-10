@@ -16,11 +16,21 @@
   </div>
 
   <h1>My Adverts</h1>
+  <div *ngIf="adverts.length == 0" class="alert alert-warning mt-5">
+    You currently have no adverts listed.
+    <div class="mt-2">
+      <button class="btn btn-light btn-sm mx-2 my-1" [routerLink]="['/editadvert', 0]">
+        Create an advert
+      </button>
+    </div>
+  </div>
   <div class="mb-3" *ngIf="adverts">
     <a *ngFor="let advert of adverts" class="card my-4">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <div class="bd-placeholder-img"><img src="../../../assets/headline-image.jpg" alt=""></div>
+          <div class="bd-placeholder-img">
+            <img src="../../../assets/headline-image.jpg" alt="" />
+          </div>
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -59,10 +69,16 @@
               Actions
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a *ngIf="advert.status == 'Live'" class="dropdown-item small" (click)="changeStatus(advert.id)"
+              <a
+                *ngIf="advert.status == 'Live'"
+                class="dropdown-item small"
+                (click)="changeStatus(advert.id)"
                 >Hide Advert</a
               >
-              <a *ngIf="advert.status == 'Hidden'" class="dropdown-item small" (click)="changeStatus(advert.id)"
+              <a
+                *ngIf="advert.status == 'Hidden'"
+                class="dropdown-item small"
+                (click)="changeStatus(advert.id)"
                 >Show Advert</a
               >
               <div class="dropdown-divider"></div>
