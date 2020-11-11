@@ -152,14 +152,16 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
 
   getLocations(): void {
     // this._inMemLocationService
-    this._locationService.getLocations().subscribe((locations) => {
+    this._locationService
+    .getLocations().subscribe((locations) => {
       this.locations = locations;
     });
   }
 
   getAdvert(id: number): void {
     // this._inMemAdService
-    this._advertService.getAdvert(id).subscribe((advert) => {
+    this._advertService
+    .getAdvert(id).subscribe((advert) => {
       this.advert = advert;
       this.displayAdvert(advert);
     });
@@ -183,8 +185,10 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       this.editAdvertForm.get("price").value.trim(),
       this.editAdvertForm.get("advertDetails").value.trim()
     );
+
     // this._inMemAdService
-    this._advertService.createAdvert(advert).subscribe({
+    this._advertService
+    .createAdvert(advert).subscribe({
       next: () => this.afterSave(),
     });
   }
@@ -196,7 +200,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     };
 
     // this._inMemAdService
-    this._advertService.updateAdvert(updatedAdvert).subscribe({
+    this._advertService
+    .updateAdvert(updatedAdvert).subscribe({
       next: () => this.afterSave(),
     });
   }
@@ -230,8 +235,9 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   afterSave(): void {
-    this.editAdvertForm.markAsPristine;
-    this.editAdvertForm.markAsUntouched;
+    this.editAdvertForm.markAsPristine();
+    this.editAdvertForm.markAsUntouched();
+    console.log(this.editAdvertForm);
     this._router.navigate(["/myadverts"]);
   }
 
