@@ -21,6 +21,7 @@ export class UnsavedGuard implements CanActivate, CanDeactivate<unknown> {
         component.exitConfirm = true;
         return component.canExit$;
       }
+      return true;
   }
   
 }
