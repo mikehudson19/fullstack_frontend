@@ -5,9 +5,11 @@ import { TruncateTextPipe } from "../_helpers/truncate-text.pipe";
 import { EditAdvertComponent } from "./edit-advert/edit-advert.component";
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
+import { AllAdvertsComponent } from './all-adverts/all-adverts.component';
+import { AdvertDetailComponent } from './advert-detail/advert-detail.component';
 
 @NgModule({
-  declarations: [MyAdvertsComponent, TruncateTextPipe, EditAdvertComponent],
+  declarations: [MyAdvertsComponent, TruncateTextPipe, EditAdvertComponent, AllAdvertsComponent, AdvertDetailComponent],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
 })
 

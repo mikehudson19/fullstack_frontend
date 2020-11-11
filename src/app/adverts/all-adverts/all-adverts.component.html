@@ -1,0 +1,36 @@
+<div class="mt-4">
+
+  <h1>All Adverts</h1>
+  <div class="alert alert-warning mt-5">
+    Search component
+  </div>
+  <div class="alert alert-warning mt-1">
+    Order-by selector: High-to-Low & Low-to-High
+  </div>
+  <div class="mb-3" *ngIf="adverts && adverts.length > 0">
+    <div class="card my-4" *ngFor="let advert of adverts" >
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <div class="bd-placeholder-img">
+            <img src="../../../assets/headline-image.jpg" alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h1 class="card-title h4">
+              {{ advert.price | currency: "ZAR":"symbol-narrow" }}
+            </h1>
+            <a class="card-text h5" [routerLink]="['/advertdetail', advert.id ]">{{ advert.headline }}</a>
+            <p class="card-text">
+              {{ advert.advertDetails | truncateText: 200 }}
+            </p>
+            <p>
+              {{ advert.province }}, {{ advert.city }}
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
