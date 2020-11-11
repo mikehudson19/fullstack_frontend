@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IAdvert } from "@app/_models/IAdvert";
 import { InMemoryAdvertService } from "@app/_mockServices/inMemoryAdvert.service";
 import { InMemoryLocationService } from "@app/_mockServices/inMemoryLocation.service";
-import { Subscription } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { Advert } from "@app/_models/advert";
 import { debounceTime } from "rxjs/operators";
 import { AdvertService } from "@app/_services/advert.service";
@@ -30,6 +30,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     [key: string]: string;
   } = {};
   alertMessage: string = "";
+  canExit$: Subject<boolean> = new Subject<boolean>(); 
+  exitConfirm: boolean = false;
 
   validationMessages: {} = {
     headline: {
@@ -228,10 +230,14 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   afterSave(): void {
-    console.log('working2')
     this.editAdvertForm.markAsPristine;
     this.editAdvertForm.markAsUntouched;
     this._router.navigate(["/myadverts"]);
+  }
+
+  choose(choice: boolean): void {
+    this.canExit$.next(choice);
+    if (choice == false) this.exitConfirm = false;
   }
 
   ngOnDestroy(): void {

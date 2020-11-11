@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './authentication/registration/registration.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { EditAdvertComponent } from './adverts/edit-advert/edit-advert.component';
+import { UnsavedGuard } from './adverts/unsaved.guard';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
     { path: 'home',  component: HomeComponent },
     { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuard] },
     { path: 'myadverts', component: MyAdvertsComponent, canActivate: [NotAuthGuard] },
-    { path: 'editadvert/:id', component: EditAdvertComponent, canActivate: [NotAuthGuard] },
+    { path: 'editadvert/:id', component: EditAdvertComponent, canActivate: [NotAuthGuard], canDeactivate: [UnsavedGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
