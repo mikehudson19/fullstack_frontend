@@ -56,7 +56,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       required: "An advert price is required.",
       min: "The minimum advert price is R10 000",
       max: "The maximum advert price is R100,000,000",
-      noSpaceValidator: "Your price cannot contain spaces"
+      noSpaceValidator: "Your price cannot contain spaces",
+      onlyNumbers: "Your price can only contain numbers"
     },
   };
 
@@ -94,7 +95,7 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
       ],
       price: [
         "",
-        [Validators.required, Validators.min(10000), Validators.max(100000000), CustomValidators.noSpaceValidator],
+        [Validators.required, Validators.min(10000), Validators.max(100000000), CustomValidators.noSpaceValidator, CustomValidators.onlyNumbers],
       ],
     });
 

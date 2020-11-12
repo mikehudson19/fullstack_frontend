@@ -43,6 +43,13 @@ export class CustomValidators {
       return null;
     }
 
+    static onlyNumbers(control: AbstractControl): { [key: string]: boolean } | null {
+      if (!/[0-9.]/.test(control.value)) {
+        return { 'onlyNumbers' : true }
+      }
+      return null;
+    }
+
     static passwordNumber(control: AbstractControl): { [key:  string]: boolean } | null {
       if (!/[0-9]/.test(control.value)) {
         return { 'passwordNumber' : true };
