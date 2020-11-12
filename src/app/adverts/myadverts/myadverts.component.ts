@@ -65,11 +65,11 @@ export class MyAdvertsComponent implements OnInit {
     // this._inMemAdvertService
     this._advertService.getAdvert(advertToUpdateId).subscribe((advert) => {
       this.advert = advert;
-      let newStatus;
-      if (this.advert.status == "Live") {
+      let newStatus: string;
+      if (this.advert.status === "Live") {
         newStatus = "Hidden";
       } else {
-        newStatus = "Live";
+        newStatus = "Live"; 
       }
 
       const updatedAdvert = { ...this.advert, ...{ status: newStatus } };

@@ -10,6 +10,7 @@ import { debounceTime } from "rxjs/operators";
 import { AdvertService } from "@app/_services/advert.service";
 import { LocationService } from "@app/_services/location.service";
 import { CustomValidators } from '@app/_helpers/customValidators';
+import { ILocation } from '@app/_models/ILocation';
 
 @Component({
   selector: "app-edit-advert",
@@ -17,11 +18,11 @@ import { CustomValidators } from '@app/_helpers/customValidators';
   styleUrls: ["./edit-advert.component.scss"],
 })
 export class EditAdvertComponent implements OnInit, OnDestroy {
-  locations = [];
+  locations: ILocation[] = [];
   editAdvertForm: FormGroup;
   sub: Subscription = new Subscription();
   province: string;
-  cities: [];
+  cities: String[];
   id: number;
   advert: IAdvert;
   actionMessage: string = "";
