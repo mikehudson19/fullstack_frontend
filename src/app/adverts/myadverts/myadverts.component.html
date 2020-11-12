@@ -1,25 +1,12 @@
 ﻿<div class="mt-4">
-  <div
-    class="alert text-center mt-3"
-    [ngClass]="{ 'alert-danger': message.includes('delete') }"
-    *ngIf="message && message.length > 0"
-  >
-    <div>{{ message }}</div>
-    <div class="mt-2">
-      <button class="btn btn-light btn-sm mx-2 my-1" (click)="onConfirm()">
-        Yes
-      </button>
-      <button class="btn btn-light btn-sm mx-2 my-1" (click)="onCancel()">
-        Cancel
-      </button>
-    </div>
-  </div>
-
   <h1>My Adverts</h1>
   <div *ngIf="adverts.length == 0" class="alert alert-warning mt-5">
     You currently have no adverts listed.
     <div class="mt-2">
-      <button class="btn btn-light btn-sm mx-2 my-1" [routerLink]="['/editadvert', 0]">
+      <button
+        class="btn btn-light btn-sm mx-2 my-1"
+        [routerLink]="['/editadvert', 0]"
+      >
         Create an advert
       </button>
     </div>
@@ -94,6 +81,23 @@
           </div>
         </div>
       </div>
+      <div
+      class="alert text-center mt-3"
+      [ngClass]="{ 'alert-danger': message.includes('delete') }"
+      *ngIf="message && message.length > 0"
+    >
+      <div>{{ message }}</div>
+      <div class="mt-2">
+        <button class="btn btn-light btn-sm mx-2 my-1" (click)="onConfirm()">
+          Yes
+        </button>
+        <button class="btn btn-light btn-sm mx-2 my-1" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
     </a>
+   
   </div>
 </div>
