@@ -76,19 +76,19 @@ export class MyAdvertsComponent implements OnInit {
 
       this._advertService
         .updateAdvertStatus(updatedAdvert)
-        .subscribe((data) => {
-          console.log(data);
+        .subscribe(() => {
+          this._advertService.getUserAdverts().subscribe((adverts) => {
+            this.loading = false;
+            this.adverts = adverts;
+            this._router
+              .navigateByUrl("/RefreshComponent", { skipLocationChange: true })
+              .then(() => {
+                this._router.navigate(["/myadverts"]);
+              });
+          });
         });
 
-      this._advertService.getUserAdverts().subscribe((adverts) => {
-        this.loading = false;
-        this.adverts = adverts;
-        this._router
-          .navigateByUrl("/RefreshComponent", { skipLocationChange: true })
-          .then(() => {
-            this._router.navigate(["/myadverts"]);
-          });
-      });
+      
     });
   }
 }
