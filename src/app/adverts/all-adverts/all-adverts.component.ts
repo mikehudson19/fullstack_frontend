@@ -19,4 +19,10 @@ export class AllAdvertsComponent implements OnInit {
     }))
   }
 
+  choose(): void {
+    // If the payload is ascending, call the API ascending method and assign this.adverts to a method calling the ascending order.
+
+    // If the payload is descending, call the API descending method and assign this.adverts to a method calling descending.
+  }
+
 }

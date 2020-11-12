@@ -230,8 +230,8 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   }
 
   afterSave(): void {
-    this.editAdvertForm.markAsPristine;
-    this.editAdvertForm.markAsUntouched;
+    this.editAdvertForm.markAsPristine();
+    this.editAdvertForm.markAsUntouched();
     this._router.navigate(["/myadverts"]);
   }
 

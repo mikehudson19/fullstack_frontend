@@ -1,1 +1,29 @@
-<h1>This is the advert detail component</h1>
+<div class="container grid-container mt-4">
+
+  <div class="img bd-placeholder-img">
+    <img src="../../../assets/headline-image.jpg" alt="" />
+  </div>
+
+      <div class="main card">
+        <div class="card-body">
+          <h5 class="card-title h2">{{ advert.price | currency: "ZAR":"symbol-narrow" }}</h5>
+          <h6 class="card-title mb-2 h4">{{ advert.headline }}</h6>
+          <p class="card-text">{{ advert.province }}, {{ advert.city }}</p>
+        </div>
+      </div>
+
+
+
+      <div class="detail card">
+        <div class="card-body">
+          <p class="card-text">{{ advert.advertDetails }}</p>
+        </div>
+      </div>
+
+      <div class="contact card">
+        <div class="card-body">
+          <h5 class="card-title">Contact Seller Component</h5>
+        </div>
+      </div>
+
+</div>
