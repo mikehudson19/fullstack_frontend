@@ -1,5 +1,1 @@
-# angular-9-jwt-authentication-example
-
-Angular 9 - JWT Authentication Example with the Angular CLI
-
-To see a demo and further details go to https://jasonwatmore.com/post/2020/04/19/angular-9-jwt-authentication-example-tutorial
+Completed code ready for review is on the master branch. Once each section is completed, I will push the code for that section to the master branch.
