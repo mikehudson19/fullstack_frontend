@@ -1,4 +1,15 @@
+<div class="bg-modal" *ngIf="exitConfirm">
+  <div class="alert alert-danger text-center">
+    <p class="py-3 px-2">You have unsaved changes that will be lost if you continue - are you sure you want to leave?</p>
+      <div class="mt-2 mb-4">
+        <button class="btn btn-light mr-4" (click)="choose(true)">Continue</button>
+        <button class="btn btn-light" (click)="choose(false)">Cancel</button>
+      </div>
+    </div> 
+  </div>
+
 <div class="container">
+ 
   <div id="login-row" class="row justify-content-center align-items-center">
     <div id="login-column" class="col-md-6">
       <div id="login-box" class="col-md-12">
@@ -8,31 +19,7 @@
           novalidate
           [formGroup]="editAdvertForm"
         >
-    
-          
-
-          <div
-            class="alert alert-warning text-center mt-3"
-            *ngIf="exitConfirm"
-          >
-            <div>You have unsaved changes that will be lost if you continue - are you sure you want to leave?</div>
-            <div class="mt-2">
-              <button
-                class="btn btn-light btn-sm mx-2 my-1"
-                (click)="choose(true)"
-              >
-                Yes
-              </button>
-              <button
-                class="btn btn-light btn-sm mx-2 my-1"
-                (click)="choose(false)"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-
-
+  
           <h3 class="text-center my-4">{{ id > 0 ? 'Edit Advert' : 'Create New Advert' }}</h3>
           <div class="form-group">
             <input
@@ -140,28 +127,6 @@
           >
             Cancel
           </a>
-
-          <div
-            class="alert text-center mt-3"
-            [ngClass]="{ 'alert-success': actionMessage.includes('save') }"
-            *ngIf="actionMessage && actionMessage.length > 0"
-          >
-            <div>{{ actionMessage }}</div>
-            <div class="mt-2">
-              <button
-                class="btn btn-light btn-sm mx-2 my-1"
-                (click)="onConfirm()"
-              >
-                Yes
-              </button>
-              <button
-                class="btn btn-light btn-sm mx-2 my-1"
-                (click)="onCancel()"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
 
           <div
             class="alert alert-warning text-center mt-3"

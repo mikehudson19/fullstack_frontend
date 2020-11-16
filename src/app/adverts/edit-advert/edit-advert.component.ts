@@ -25,7 +25,6 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   cities: String[];
   id: number;
   advert: IAdvert;
-  actionMessage: string = "";
   isConfirm: boolean = false;
   validationMessage: {
     [key: string]: string;
@@ -208,7 +207,7 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     });
   }
 
-  onConfirm(): void {
+  onSave(): void {
     if (this.editAdvertForm.valid) {
       if (this.id == 0) {
         this.createAdvert();
@@ -220,20 +219,11 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
         return;
       }
     } else {
-      this.actionMessage = "";
       this.alertMessage = "Please ensure the form is valid.";
       setTimeout(() => {
         this.alertMessage = "";
       }, 2000);
     }
-  }
-
-  onCancel(): void {
-    this.actionMessage = "";
-  }
-
-  onSave(): void {
-    this.actionMessage = "Are you sure you want to save your changes?";
   }
 
   afterSave(): void {
