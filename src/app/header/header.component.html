@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark text-primary">
   <div class="navbar-nav">
       <a class="nav-item nav-link text-light" routerLink="/home">Home</a>
-      <a class="nav-item nav-link text-light" routerLink="/">Homes for sale</a>
+      <a class="nav-item nav-link text-light" routerLink="/alladverts">Homes for sale</a>
       <a class="nav-item nav-link text-light" [routerLink]="['/editadvert', 0]">Sell a house</a>
       <a class="nav-item nav-link text-light" routerLink="/login" *ngIf="!currentUser">Login</a>
       <a class="nav-item nav-link text-light" routerLink="/registration" *ngIf="!currentUser">Register</a>
@@ -13,7 +13,7 @@
   <div class="navbar-nav">
       <a class="nav-item nav-link text-light" routerLink="/myadverts">My Ads</a>
       <a class="nav-item nav-link text-light" routerLink="/">My Profile</a>
-      <a class="nav-item nav-link text-light" routerLink="/">Buy a House</a>
+      <a class="nav-item nav-link text-light" routerLink="/alladverts">Buy a House</a>
       <a class="nav-item nav-link text-light" [routerLink]="['/editadvert', 0]">Sell a House</a>
       <a class="nav-item nav-link text-light" routerLink="/">Manage Account</a>
       <a class="nav-item nav-link text-light" routerLink="/">My Seller Profile</a>

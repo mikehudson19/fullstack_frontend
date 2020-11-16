@@ -1,0 +1,29 @@
+<div class="container grid-container mt-4">
+
+  <div class="img bd-placeholder-img">
+    <a><i class="fas fa-chevron-left mr-5"></i></a>
+    <img src="../../../assets/headline-image.jpg" alt="" />
+    <a><i class="fas fa-chevron-right ml-5"></i></a>
+  </div>
+
+      <div class="main card">
+        <div class="card-body">
+          <h5 class="card-title h2">{{ advert.price | currency: "ZAR":"symbol-narrow" }}</h5>
+          <h6 class="card-title my-4 h4">{{ advert.headline }}</h6>
+          <p class="card-text">{{ advert.province }}, {{ advert.city }}</p>
+        </div>
+      </div>
+
+      <div class="detail card">
+        <div class="card-body">
+          <p class="card-text">{{ advert.advertDetails }}</p>
+        </div>
+      </div>
+
+      <div class="contact card">
+        <div class="card-body">
+          <h5 class="card-title">Contact Seller Component</h5>
+        </div>
+      </div>
+
+</div>

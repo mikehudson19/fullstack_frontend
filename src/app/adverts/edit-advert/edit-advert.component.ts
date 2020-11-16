@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { IAdvert } from "@app/_models/IAdvert";
 import { InMemoryAdvertService } from "@app/_mockServices/inMemoryAdvert.service";
 import { InMemoryLocationService } from "@app/_mockServices/inMemoryLocation.service";
@@ -112,7 +112,7 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     // Get the advert ID from the route parameter
     this.sub.add(
       this._route.paramMap.subscribe((params) => {
-        this.id = +params.get("id");
+        this.id = +params.get('id');
         this.getAdvert(this.id);
       })
     );
@@ -165,7 +165,7 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
     this._advertService
     .getAdvert(id).subscribe((advert) => {
       this.advert = advert;
-      this.displayAdvert(advert);
+      this.displayAdvert(this.advert);
     });
   }
 
@@ -239,7 +239,6 @@ export class EditAdvertComponent implements OnInit, OnDestroy {
   afterSave(): void {
     this.editAdvertForm.markAsPristine();
     this.editAdvertForm.markAsUntouched();
-    console.log(this.editAdvertForm);
     this._router.navigate(["/myadverts"]);
   }
 

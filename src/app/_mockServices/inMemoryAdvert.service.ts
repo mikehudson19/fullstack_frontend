@@ -17,8 +17,12 @@ export class InMemoryAdvertService {
 
   constructor(private _http: HttpClient) { }
 
-  getUserAdverts(): Observable<Object> {
-    return this._http.get<Object>(this.advertUrl).pipe()
+  getUserAdverts(): Observable<IAdvert[]> {
+    return this._http.get<IAdvert[]>(this.advertUrl).pipe()
+  }
+
+  getAllAdverts(): Observable<IAdvert[]> {
+    return this._http.get<IAdvert[]>(this.advertUrl).pipe()
   }
 
   getAdvert(id): Observable<IAdvert> {
@@ -35,6 +39,12 @@ export class InMemoryAdvertService {
   } 
 
   updateAdvertStatus(advert: IAdvert): Observable<IAdvert> {
+    const headers = new HttpHeaders({ 'Content-Type' : 'application/json' });
+    const url = `${this.advertUrl}/${advert.id}`;
+    return this._http.put<IAdvert>(url, advert, { headers });
+  }
+
+  updateAdvert(advert: IAdvert): Observable<IAdvert> {
     const headers = new HttpHeaders({ 'Content-Type' : 'application/json' });
     const url = `${this.advertUrl}/${advert.id}`;
     return this._http.put<IAdvert>(url, advert, { headers });

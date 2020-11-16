@@ -4,42 +4,43 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-// import { fakeBackendProvider } from './_helpers';
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { MyInMemoryService } from './_mockServices/my-in-memory.service';
+import { fakeBackendProvider } from './_helpers';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MyInMemoryService } from './_mockServices/my-in-memory.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component'
 ;
 import { HeaderComponent } from './header/header.component'
 import { AuthenticationModule } from './authentication/authentication.module';;
-import { AdvertsModule } from './adverts/adverts.module';
+import { AdvertsModule } from './adverts/adverts.module';;
+import { HomeComponent } from './home/home.component'
+;
 
 @NgModule({
     imports: [
+        AppRoutingModule,
         BrowserModule,
         ReactiveFormsModule,
         AuthenticationModule,
         AdvertsModule,
         HttpClientModule,
-        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
-        AppRoutingModule
+        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
         FooterComponent,
         HeaderComponent,
+        HomeComponent,
         ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        // fakeBackendProvider
+        fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })
