@@ -9,6 +9,7 @@
 .img {
   grid-column: 1 / span 2;
   grid-row: 1 / span 4;
+  text-align: center;
 }
 
 .main {
@@ -32,6 +33,10 @@
 }
 
 img {
-  width: 100%;
+  width: 65%;
   height: 100%
+}
+
+.fas {
+  font-size: 2rem;
 }

@@ -10,6 +10,17 @@ export class MyInMemoryService implements InMemoryDbService {
 
     const adverts = [
       {
+        id: 3,
+        userId: 2,
+        headline: "2 Bedroom Apartment",
+        province: "Gauteng",
+        city: "Douglasdale",
+        advertDetails:
+          "2 bedrooms with the main leading out to garden with french doors, unit has a beautiful full bathroom. Generous sized living area open plan lounge/ dining and kitchen with sliding doors leading out on to the private  garden and covered patio area. Complex offers tennis court 3 pools active club house fiber and 24 hour security, access control, Douglasdale village shopping center a walk away.",
+        price: 940000,
+        status: "Live",
+      },
+      {
         id: 1,
         userId: 1,
         headline: "3 Bedroom House",
@@ -31,17 +42,7 @@ export class MyInMemoryService implements InMemoryDbService {
         price: 1300000,
         status: "Hidden",
       },
-      {
-        id: 3,
-        userId: 2,
-        headline: "2 Bedroom Apartment",
-        province: "Gauteng",
-        city: "Douglasdale",
-        advertDetails:
-          "2 bedrooms with the main leading out to garden with french doors, unit has a beautiful full bathroom. Generous sized living area open plan lounge/ dining and kitchen with sliding doors leading out on to the private  garden and covered patio area. Complex offers tennis court 3 pools active club house fiber and 24 hour security, access control, Douglasdale village shopping center a walk away.",
-        price: 940000,
-        status: "Live",
-      },
+      
     ];
 
 
