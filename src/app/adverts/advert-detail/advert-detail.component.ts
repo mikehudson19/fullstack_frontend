@@ -31,9 +31,11 @@ export class AdvertDetailComponent implements OnInit, OnDestroy {
   }
 
   getAdvert(id: number): void {
-    this._inMemAdService.getAdvert(id).subscribe((advert => {
-      this.advert = advert;
-    }))
+    // this._inMemAdService
+    this._advertService  
+    .getAdvert(id).subscribe((advert => {
+        this.advert = advert;
+      }))
   }
 
   ngOnDestroy(): void {
