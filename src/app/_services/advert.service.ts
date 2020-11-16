@@ -20,6 +20,10 @@ export class AdvertService {
     return this._http.get<IAdvert>(`${environment.apiUrl}/api/adverts/${id}`)
   }
 
+  getAllAdverts(): Observable<IAdvert[]> {
+    return this._http.get<IAdvert[]>(`${environment.apiUrl}/api/adverts/all`)
+  }
+
   getUserAdverts(): Observable<IAdvert[]> {
     return this._http.get<IAdvert[]>(`${environment.apiUrl}/api/adverts`);
   }

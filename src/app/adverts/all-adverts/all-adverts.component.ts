@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InMemoryAdvertService } from '@app/_mockServices/inMemoryAdvert.service';
 import { IAdvert } from '@app/_models/IAdvert';
+import { AdvertService } from '@app/_services/advert.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,13 @@ export class AllAdvertsComponent implements OnInit {
   isAscending: boolean;
   orderBy: string = 'None';
 
-  constructor(private _inMemAdService: InMemoryAdvertService) { }
+  constructor(private _inMemAdService: InMemoryAdvertService,
+              private _advertService: AdvertService) { }
 
   ngOnInit(): void {
-    this._inMemAdService.getAllAdverts().subscribe((adverts => {
+    // this._inMemAdService
+    this._advertService
+    .getAllAdverts().subscribe((adverts => {
       this.adverts = adverts;
     }))
   }

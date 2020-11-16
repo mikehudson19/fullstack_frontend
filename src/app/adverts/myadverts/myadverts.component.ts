@@ -32,8 +32,8 @@ export class MyAdvertsComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
 
-    this._inMemAdvertService
-    // this._advertService
+    // this._inMemAdvertService
+    this._advertService
     .getUserAdverts().subscribe((adverts) => {
       this.loading = false;
       this.adverts = adverts;
@@ -46,8 +46,8 @@ export class MyAdvertsComponent implements OnInit {
   }
 
   onConfirm(): void {
-    this._inMemAdvertService
-    // this._advertService
+    // this._inMemAdvertService
+    this._advertService
       .shadowDeleteAdvert(this.advertToDeleteId)
       .subscribe((data) => {
         this._router
@@ -63,8 +63,8 @@ export class MyAdvertsComponent implements OnInit {
   }
 
   changeStatus(advertToUpdateId: number): void {
-    this._inMemAdvertService
-    // this._advertService
+    // this._inMemAdvertService
+    this._advertService
     .getAdvert(advertToUpdateId).subscribe((advert) => {
       this.advert = advert;
       let newStatus: string;

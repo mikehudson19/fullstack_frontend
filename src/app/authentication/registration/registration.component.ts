@@ -145,14 +145,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         Object.keys(control.errors).map((messageKey) => {
           messages[input] = this.validationMessages[input][messageKey];
         });
-        // return messages;
       }
 
       // If the password field doesn't meet the requirements, assign error message.
       if (control instanceof FormGroup) {
         const nestedGroupMessages = this.invalidInputs(control);
         Object.assign(messages, nestedGroupMessages);
-        // return messages;
       }
 
       // If any of the other fields don't meet the requirements, assign error message.
@@ -162,7 +160,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
           Object.keys(control.errors).map((messageKey) => {
             messages[input] = this.validationMessages[input][messageKey];
           });
-          // return messages;
         }
       }
     }
