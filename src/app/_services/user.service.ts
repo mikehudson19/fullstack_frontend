@@ -29,4 +29,8 @@ export class UserService {
             return user;
         }))
     }
+
+    updatePassword(body: {}) {
+        return this._http.put<IUser>(`${environment.apiUrl}/api/users/password`, body);
+    }
 }

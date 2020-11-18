@@ -10,7 +10,7 @@
 .user-info {
   display: grid;
   grid-template-columns: 1.5fr 2fr 2fr;
-  grid-template-rows: repeat(3, 3rem);
+  grid-template-rows: repeat(4, 3rem);
   justify-items: center;
   align-items: center;
 }
@@ -61,6 +61,23 @@
 .btn_email {
   grid-column: 3 / span 1;
   grid-row: 3 / span 1;
+}
+
+.label_password {
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1; 
+  justify-self: start;
+}
+
+.value_password {
+  grid-column: 2 / span 1;
+  grid-row: 4 / span 1;
+  font-size: 0.5rem;
+}
+
+.btn_password {
+  grid-column: 3 / span 1;
+  grid-row: 4 / span 1;
 }
 
 .btn-sm {

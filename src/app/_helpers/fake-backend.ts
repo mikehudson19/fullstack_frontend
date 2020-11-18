@@ -27,6 +27,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.endsWith('/users') && method === 'PUT':
                     return updateUser();
+                case url.endsWith('/users/password') && method === 'PUT':
+                    return updatePassword();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -64,6 +66,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 surname: surname,
                 token: 'fake-jwt-token'
             });
+        }
+
+        function updatePassword() {
+            const { currentPassword, password, confirmPass } = body;
+            const user = users.find(x => x.password === currentPassword );
+            if (!user) return error('Current password is incorrect');
+            return ok({
+                password: password,
+                confirmPass: confirmPass
+            })
         }
 
         // helper functions

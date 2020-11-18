@@ -135,6 +135,7 @@
         
           <span class="label_email">Email Address</span>
           <span class="value_email">{{ authUser.email }}</span>
+
           <!-- Button trigger modal -->
           <button
             type="button"
@@ -189,15 +190,142 @@
               </div>
             </div>
           </div>
-        
 
+          <span class="label_password">Password</span>
+          <span class="value_password">●●●●●●●●</span>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary btn_surname btn-sm btn_password"
+            data-toggle="modal"
+            data-target="#passwordModal"
+          >
+            Edit Password
+          </button>
+        
+          <div
+            class="modal fade"
+            id="passwordModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="passwordModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm current password and enter a new one:</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group mt-3" class="control-text">
+                    <label for="">Current Password</label>
+                    <div class="input-group">
+                    <input
+                      [type]="fieldTextType ? 'text' : 'password'"
+                      class="form-control"
+                      formControlName="currentPassword"
+                      autocomplete="off"
+                      [ngClass]="{ 'is-invalid': message && message.currentPassword }"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <a
+                          ><i
+                            (click)="toggleFieldTextType()"
+                            class="fa"
+                            [ngClass]="{
+                              'fa-eye-slash': !fieldTextType,
+                              'fa-eye': fieldTextType
+                            }"
+                          ></i
+                        ></a>
+                      </span>
+                    </div>
+                    <span class="invalid-feedback">
+                      <span>{{ message.currentPassword }}</span>
+                    </span>
+                  </div>
+                  </div>
+
+                  <div formGroupName="passwords">
+                  <div class="form-group mt-3" class="control-text">
+                    <label for="">New Password</label>
+                    <div class="input-group">
+                      <input
+                        [type]="fieldTextType ? 'text' : 'password'"
+                        class="form-control"
+                        formControlName="password"
+                        autocomplete="off"
+                        [ngClass]="{ 'is-invalid': message && message.password }"
+                      />
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <a
+                            ><i
+                              (click)="toggleFieldTextType()"
+                              class="fa"
+                              [ngClass]="{
+                                'fa-eye-slash': !fieldTextType,
+                                'fa-eye': fieldTextType
+                              }"
+                            ></i
+                          ></a>
+                        </span>
+                      </div>
+                      <span class="invalid-feedback">
+                        <span>{{ message.password }}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-3" class="control-text">
+                    <label for="">Confirm New Password</label>
+                    <div class="input-group">
+                    <input
+                      [type]="fieldTextType ? 'text' : 'password'"
+                      class="form-control"
+                      formControlName="confirmPass"
+                      autocomplete="off"
+                      [ngClass]="{ 'is-invalid': message && message.confirmPass || message.passwords }"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <a
+                          ><i
+                            (click)="toggleFieldTextType()"
+                            class="fa"
+                            [ngClass]="{
+                              'fa-eye-slash': !fieldTextType,
+                              'fa-eye': fieldTextType
+                            }"
+                          ></i
+                        ></a>
+                      </span>
+                    </div>
+                    <span class="invalid-feedback">
+                      <span>{{ message.confirmPass || message.passwords }}</span>
+                    </span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updatePassword()">
+                    Save changes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
-          <div class="mt-4">
-            <a class="btn btn-outline-secondary btn-lg btn-block"
-              >Change Password</a
-            >
-          </div>
         </form>
       </div>
     </div>
