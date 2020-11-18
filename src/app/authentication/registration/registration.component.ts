@@ -27,9 +27,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       required: "Your forenames are required.",
       minlength: "Your forenames need to be at least 1 character long.",
       multipleSpaceValidator: "Your forenames cannot contain multiple spaces.",
-      maxlength: "Your first name cannot be longer than 100 characters",
-      noNumbers: "Your first name cannot contain any numbers",
-      noSpecialChar: "Your first name cannot contain any special characters",
+      maxlength: "Your forename cannot be longer than 100 characters",
+      noNumbers: "Your forename cannot contain any numbers",
+      noSpecialChar: "Your forename cannot contain any special characters",
       spaceStart: "Your forename cannot start with a space"
     },
     surname: {

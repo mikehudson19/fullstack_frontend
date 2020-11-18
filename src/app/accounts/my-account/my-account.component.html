@@ -1,0 +1,205 @@
+<div class="container">
+  <div id="login-row" class="row justify-content-center align-items-center">
+    <div id="login-column" class="col-md-6">
+      <div id="login-box" class="col-md-12">
+        <h1 class="text-center my-4 h3">Manage My Account</h1>
+
+        <form class="form" novalidate [formGroup]="manageAccountForm">
+          
+
+          <div class="user-info">
+          
+          <span class="label_forename">Forenames</span>
+          <span class="value_forename">{{ authUser.forenames }}</span>
+
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary btn_forename btn-sm"
+            data-toggle="modal"
+            data-target="#forenamesModal"
+          >
+            Edit Forenames
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="forenamesModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Please enter your new forenames:</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group mt-3" class="control-text">
+                    <label for="">Forenames</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="forenames"
+                      autocomplete="off"
+                      [ngClass]="{ 'is-invalid': message && message.forenames }"
+                    />
+                    <span class="invalid-feedback">
+                      <span>{{ message.forenames }}</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"                    data-dismiss="modal"
+                  (click)="saveChanges()"
+                  >
+                    Save changes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+
+          
+          <span class="label_surname">Surname</span>
+          <span class="value_surname">{{ authUser.surname }}</span>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary btn_surname btn-sm"
+            data-toggle="modal"
+            data-target="#surnameModal"
+          >
+            Edit Surname
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="surnameModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="surnameModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Please enter your new surname:</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group mt-3">
+                    <label for="" class="control-text">Surname</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="surname"
+                      autocomplete="off"
+                      [ngClass]="{ 'is-invalid': message && message.surname }"
+                    />
+                    <span class="invalid-feedback">
+                      <span>{{ message.surname }}</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges()">
+                    Save changes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+
+
+
+        
+          <span class="label_email">Email Address</span>
+          <span class="value_email">{{ authUser.email }}</span>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary btn_email btn-sm"
+            data-toggle="modal"
+            data-target="#emailModal"
+          >
+            Edit Email
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="emailModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="emailModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Please enter your new email address:</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group mt-3" class="control-text">
+                    <label for="">Email Address</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="email"
+                      autocomplete="off"
+                      [ngClass]="{ 'is-invalid': message && message.email }"
+                    />
+                    <span class="invalid-feedback">
+                      <span>{{ message.email }}</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges()">
+                    Save changes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+      </div>
+
+          <div class="mt-4">
+            <a class="btn btn-outline-secondary btn-lg btn-block"
+              >Change Password</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

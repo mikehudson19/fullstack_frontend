@@ -1,0 +1,68 @@
+.control-text {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.btn:hover {
+  color: white;
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 2fr;
+  grid-template-rows: repeat(3, 3rem);
+  justify-items: center;
+  align-items: center;
+}
+
+.label_forename {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  justify-self: start;
+}
+
+.value_forename {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.btn_forename {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.label_surname {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1; 
+  justify-self: start;
+}
+
+.value_surname {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.btn_surname {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.label_email {
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1; 
+  justify-self: start;
+}
+
+.value_email {
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.btn_email {
+  grid-column: 3 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.btn-sm {
+  width: 80%;
+}

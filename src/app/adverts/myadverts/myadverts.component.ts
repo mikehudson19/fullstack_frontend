@@ -41,7 +41,6 @@ export class MyAdvertsComponent implements OnInit {
   }
 
   onDelete(advertId: number): void {
-    // this.message = `Are you sure you want to delete this advert? This action cannot be undone.`;
     this.advertToDeleteId = advertId;
   }
 

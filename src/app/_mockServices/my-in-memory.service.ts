@@ -3,16 +3,12 @@ import { RequestInfo } from "angular-in-memory-web-api/interfaces";
 
 export class MyInMemoryService implements InMemoryDbService {
   createDb() {
-    const users = [
-      { id: 1, username: "fred92", password: "1234" },
-      { id: 2, username: "john69", password: "abcd" },
-    ];
-
+  
     const adverts = [
       {
         id: 3,
         userId: 2,
-        headline: "2 Bedroom Apartment",
+        headline: "2 Bedroom Apartment (Mock API)",
         province: "Gauteng",
         city: "Douglasdale",
         advertDetails:
@@ -23,7 +19,7 @@ export class MyInMemoryService implements InMemoryDbService {
       {
         id: 1,
         userId: 1,
-        headline: "3 Bedroom House",
+        headline: "3 Bedroom House (Mock API)",
         province: "Gauteng",
         city: "Sandton",
         advertDetails:
@@ -34,7 +30,7 @@ export class MyInMemoryService implements InMemoryDbService {
       {
         id: 2,
         userId: 1,
-        headline: "2 Bedroom House",
+        headline: "2 Bedroom House (Mock API)",
         province: "Gauteng",
         city: "Fourways",
         advertDetails:
@@ -54,6 +50,6 @@ export class MyInMemoryService implements InMemoryDbService {
       { province: "Free State", cities: [ { cityName: 'Bloemfontein' }, { cityName: 'Welkom' } ] },
     ];
 
-    return { users, adverts, locations };
+    return { adverts, locations };
   }
 }

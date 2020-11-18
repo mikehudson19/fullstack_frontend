@@ -22,7 +22,7 @@ export class InMemoryAdvertService {
   }
 
   getAllAdverts(): Observable<IAdvert[]> {
-    return this._http.get<IAdvert[]>(this.advertUrl).pipe()
+    return this._http.get<IAdvert[]>(`${this.advertUrl}/all`).pipe()
   }
 
   getAdvert(id): Observable<IAdvert> {

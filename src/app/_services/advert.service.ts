@@ -17,11 +17,11 @@ export class AdvertService {
       return of(this.initializeAd());
     }
     
-    return this._http.get<IAdvert>(`${environment.apiUrl}/api/adverts/${id}`)
+    return this._http.get<IAdvert>(`${environment.apiUrl}/api/adverts/${id}`);
   }
 
   getAllAdverts(): Observable<IAdvert[]> {
-    return this._http.get<IAdvert[]>(`${environment.apiUrl}/api/adverts/all`)
+    return this._http.get<IAdvert[]>(`${environment.apiUrl}/api/adverts/all`);
   }
 
   getUserAdverts(): Observable<IAdvert[]> {
@@ -35,12 +35,12 @@ export class AdvertService {
 
   updateAdvertStatus(advert: IAdvert): Observable<IAdvert> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._http.put<IAdvert>(`${environment.apiUrl}/api/adverts/status`, advert, { headers })
+    return this._http.put<IAdvert>(`${environment.apiUrl}/api/adverts/status`, advert, { headers });
   }
 
   updateAdvert(advert: IAdvert): Observable<IAdvert> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._http.put<IAdvert>(`${environment.apiUrl}/api/adverts/${advert.id}`, advert, { headers })
+    return this._http.put<IAdvert>(`${environment.apiUrl}/api/adverts/${advert.id}`, advert, { headers });
   }
 
   shadowDeleteAdvert(id: number): Observable<IAdvert> {

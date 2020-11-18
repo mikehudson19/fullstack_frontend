@@ -25,6 +25,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return authenticate();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
+                case url.endsWith('/users') && method === 'PUT':
+                    return updateUser();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -50,6 +52,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
+        }
+
+        function updateUser() {
+            const { email, forenames, surname, id } = body;
+            const user = users.find(x => x.id === id);
+            return ok({
+                id: user.id,
+                email: email,
+                forenames: forenames,
+                surname: surname,
+                token: 'fake-jwt-token'
+            });
         }
 
         // helper functions
