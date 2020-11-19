@@ -18,11 +18,11 @@ export class InMemoryAdvertService {
   constructor(private _http: HttpClient) { }
 
   getUserAdverts(): Observable<IAdvert[]> {
-    return this._http.get<IAdvert[]>(this.advertUrl).pipe()
+    return this._http.get<IAdvert[]>(this.advertUrl)
   }
 
   getAllAdverts(): Observable<IAdvert[]> {
-    return this._http.get<IAdvert[]>(`${this.advertUrl}/all`).pipe()
+    return this._http.get<IAdvert[]>(`${this.advertUrl}`)
   }
 
   getAdvert(id): Observable<IAdvert> {

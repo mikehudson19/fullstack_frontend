@@ -44,7 +44,8 @@ export class CustomValidators {
     }
 
     static onlyNumbers(control: AbstractControl): { [key: string]: boolean } | null {
-      if (!/[0-9.]/.test(control.value)) {
+      // if (!/[0-9]/.test(control.value)) {
+      if (/[A-Za-z!@#$%^&*(),.?":{}|<>±§_+~`=\/]/.test(control.value)) {
         return { 'onlyNumbers' : true }
       }
       return null;

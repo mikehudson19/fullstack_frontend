@@ -10,6 +10,7 @@ export class User implements IUser {
         public confirmPass?: string,
         public token?: string,
         public id?: number,
+        public contactNumber?: string
     ){
 
     }

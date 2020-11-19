@@ -18,8 +18,8 @@ export class AllAdvertsComponent implements OnInit {
               private _advertService: AdvertService) { }
 
   ngOnInit(): void {
-    // this._inMemAdService
-    this._advertService
+    this._inMemAdService
+    // this._advertService
     .getAllAdverts().subscribe((adverts => {
       this.adverts = adverts;
     }))

@@ -12,6 +12,7 @@ import { UnsavedGuard } from './adverts/unsaved.guard';
 import { HomeComponent } from './home/home.component';
 import { AdvertDetailComponent } from './adverts/advert-detail/advert-detail.component';
 import { MyAccountComponent } from './accounts/my-account/my-account.component';
+import { SellerAccountComponent } from './accounts/seller-account/seller-account.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'alladverts', component: AllAdvertsComponent },
     { path: 'advertdetail/:id', component: AdvertDetailComponent },
     { path: 'myaccount', component: MyAccountComponent, canActivate: [ NotAuthGuard ] },
+    { path: 'selleraccount', component: SellerAccountComponent, canActivate: [ NotAuthGuard ] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
