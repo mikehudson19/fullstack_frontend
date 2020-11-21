@@ -62,8 +62,11 @@ export class SellerAccountComponent implements OnInit {
   }
 
   getUser(): void {
-    this.authUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.displayUser();
+    this._userService.getAuthUser().subscribe(user => {
+      this.authUser = user;
+      this.displayUser();
+    })
+    // this.authUser = JSON.parse(localStorage.getItem("currentUser"));
   }
 
   displayUser(): void {
@@ -92,6 +95,10 @@ export class SellerAccountComponent implements OnInit {
 
     }
     return messages;
+  }
+
+  updateDetails(): void {
+    console.log(typeof +this.sellerForm.get("contactNumber").value);
   }
 
   ngOnDestroy(): void {

@@ -10,7 +10,7 @@
           <div class="user-info">
           
           <span class="label_forename">Forenames</span>
-          <span class="value_forename">{{ authUser.forenames }}</span>
+          <span class="value_forename" *ngIf="authUser">{{ authUser.forenames }}</span>
 
           <!-- Button trigger modal -->
           <button
@@ -53,7 +53,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary"                    data-dismiss="modal"
-                  (click)="saveChanges()"
+                  (click)="updateUser()"
                   >
                     Save changes
                   </button>
@@ -73,7 +73,7 @@
 
           
           <span class="label_surname">Surname</span>
-          <span class="value_surname">{{ authUser.surname }}</span>
+          <span class="value_surname" *ngIf="authUser">{{ authUser.surname }}</span>
           <!-- Button trigger modal -->
           <button
             type="button"
@@ -114,7 +114,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges()">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUser()">
                     Save changes
                   </button>
                   <button
@@ -134,7 +134,7 @@
 
         
           <span class="label_email">Email Address</span>
-          <span class="value_email">{{ authUser.email }}</span>
+          <span class="value_email" *ngIf="authUser">{{ authUser.email }}</span>
 
           <!-- Button trigger modal -->
           <button
@@ -176,7 +176,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveChanges()">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUser()">
                     Save changes
                   </button>
                   <button

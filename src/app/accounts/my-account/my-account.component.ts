@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomValidators } from "@app/_helpers/customValidators";
 import { User } from "@app/_models";
+import { IUser } from '@app/_models/IUser';
 import { UserService } from "@app/_services";
 import { Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
@@ -12,11 +13,12 @@ import { debounceTime } from "rxjs/operators";
   templateUrl: "./my-account.component.html",
   styleUrls: ["./my-account.component.scss"],
 })
+
 export class MyAccountComponent implements OnInit, OnDestroy {
   manageAccountForm: FormGroup;
   message: { [key: string]: string } = {};
   sub: Subscription;
-  authUser: User;
+  authUser: IUser;
   fieldTextType: boolean = false;
 
   validationMessages: {} = {
@@ -168,8 +170,12 @@ export class MyAccountComponent implements OnInit, OnDestroy {
   }
 
   getAuthUser(): void {
-    this.authUser = JSON.parse(localStorage.getItem("currentUser"));
-    this.displayUser();
+    this._userService.getAuthUser().subscribe(user => {
+        this.authUser = user;
+        this.displayUser();      
+    })
+    // In memory API code
+    // this.authUser = JSON.parse(localStorage.getItem("currentUser"));
   }
 
   displayUser(): void {
@@ -180,13 +186,14 @@ export class MyAccountComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveChanges(): void {
+  updateUser(): void {
     const userToUpdate = {
-      id: this.authUser.id,
       forenames: this.manageAccountForm.get("forenames").value,
       surname: this.manageAccountForm.get("surname").value,
       email: this.manageAccountForm.get("email").value,
+      contactNumber: this.authUser.contactNumber ? this.authUser.contactNumber : "",
     };
+
     this._userService.updateUser(userToUpdate).subscribe((user) => {
       this._router
         .navigateByUrl("/RefreshComponent", { skipLocationChange: true })
@@ -206,9 +213,9 @@ export class MyAccountComponent implements OnInit, OnDestroy {
       password: this.manageAccountForm.get("passwords.password").value,
       confirmPass: this.manageAccountForm.get("passwords.confirmPass").value
     }
-    this._userService.updatePassword(passwords).subscribe(data => {
-      console.log(data);
-    })
+    // this._userService.updateUserPassword(passwords).subscribe(data => {
+    //   console.log(data);
+    // })
   }
 
   ngOnDestroy(): void {

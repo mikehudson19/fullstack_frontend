@@ -29,7 +29,7 @@ import { AccountsModule } from './accounts/accounts.module';;
         AdvertsModule,
         AccountsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
+        // HttpClientInMemoryWebApiModule.forRoot(MyInMemoryService),
     ],
     declarations: [
         AppComponent,
@@ -42,7 +42,7 @@ import { AccountsModule } from './accounts/accounts.module';;
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // // provider used to create fake backend
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })
