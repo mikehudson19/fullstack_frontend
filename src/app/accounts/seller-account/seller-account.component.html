@@ -1,7 +1,10 @@
 <div class="container">
   <div class="col-md-6 offset-md-3 mt-5">
+
+    
+
     <h1 class="text-center my-4 h3">My Seller Profile</h1>
-    <form [formGroup]="sellerForm">
+    <form [formGroup]="sellerForm" class="form"> 
       <div class="form-group d-flex flex-column">
         <label for="">Email Address*</label>
         <input
@@ -16,17 +19,30 @@
       </div>
       <div class="form-group d-flex flex-column">
         <label for="">Contact Number</label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="contactNumber"
-          [ngClass]="{ 'is-invalid': message && message.contactNumber }"
-        />
-        <span class="invalid-feedback">
-          <span>{{ message.contactNumber }}</span>
-        </span>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> +27 </span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="contactNumber"
+            [ngClass]="{ 'is-invalid': message && message.contactNumber }"
+          />
+          <span class="invalid-feedback">
+            <span>{{ message.contactNumber }}</span>
+          </span>
+        </div>
       </div>
-      <button class="btn btn-outline-success btn-lg btn-block" (click)="updateDetails()">
+
+      <div class="alert alert-success my-3 text-center" *ngIf="successMessage" >
+        {{ successMessage }}
+      </div>
+
+      <button
+        class="btn btn-outline-success btn-lg btn-block"
+        (click)="updateDetails()"
+      >
         Save Profile
       </button>
       <a class="btn btn-outline-danger btn-lg btn-block" routerLink="/myadverts"

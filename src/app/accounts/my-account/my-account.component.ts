@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CustomValidators } from "@app/_helpers/customValidators";
 import { User } from "@app/_models";
+import { IPasswords } from '@app/_models/IPasswords';
 import { IUser } from '@app/_models/IUser';
 import { UserService } from "@app/_services";
 import { Subscription } from "rxjs";
@@ -20,6 +21,8 @@ export class MyAccountComponent implements OnInit, OnDestroy {
   sub: Subscription;
   authUser: IUser;
   fieldTextType: boolean = false;
+  error: string = '';
+  successMessage: string = '';
 
   validationMessages: {} = {
     forenames: {
@@ -187,7 +190,7 @@ export class MyAccountComponent implements OnInit, OnDestroy {
   }
 
   updateUser(): void {
-    const userToUpdate = {
+    const userToUpdate: IUser = {
       forenames: this.manageAccountForm.get("forenames").value,
       surname: this.manageAccountForm.get("surname").value,
       email: this.manageAccountForm.get("email").value,
@@ -208,14 +211,36 @@ export class MyAccountComponent implements OnInit, OnDestroy {
   }
 
   updatePassword(): void {
-    const passwords = {
+    
+    const passwords: IPasswords = {
       currentPassword: this.manageAccountForm.get("currentPassword").value,
       password: this.manageAccountForm.get("passwords.password").value,
       confirmPass: this.manageAccountForm.get("passwords.confirmPass").value
     }
-    // this._userService.updateUserPassword(passwords).subscribe(data => {
-    //   console.log(data);
-    // })
+
+    this._userService.updateUserPassword(passwords).subscribe(data => {
+      this.successMessage = "Your password was successfully updated."
+          setTimeout (() => {
+            this.successMessage = '';
+        }, 2500);
+
+       this.afterSave();
+    },
+    error => {
+      this.error = error;
+      setTimeout (() => {
+        this.error = '';
+     }, 2500);
+    })
+  }
+
+  afterSave(): void {
+    this.manageAccountForm.patchValue({
+      currentPassword: '',
+      passwords: { password: '', confirmPass: ''},
+    });
+    this.manageAccountForm.markAsPristine();
+    this.manageAccountForm.markAsUntouched();
   }
 
   ngOnDestroy(): void {

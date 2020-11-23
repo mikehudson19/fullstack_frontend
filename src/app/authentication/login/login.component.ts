@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error = "";
+  error: string = "";
   message: { [key: string]: string } = {};
   fieldTextType: boolean = false;
 

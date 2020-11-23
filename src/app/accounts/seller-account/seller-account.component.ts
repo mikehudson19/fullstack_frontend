@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidators } from '@app/_helpers/customValidators';
 import { User } from "@app/_models";
+import { IUser } from '@app/_models/IUser';
 import { UserService } from "@app/_services";
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -16,6 +17,7 @@ export class SellerAccountComponent implements OnInit {
   sellerForm: FormGroup;
   message: { [key: string]: string } = {}
   sub: Subscription;
+  successMessage: string = '';
 
   validationMessages: {} = {
     email: {
@@ -98,7 +100,18 @@ export class SellerAccountComponent implements OnInit {
   }
 
   updateDetails(): void {
-    console.log(typeof +this.sellerForm.get("contactNumber").value);
+
+    const userToUpdate: IUser = {
+      ...this.authUser,
+      ...this.sellerForm.value
+    }
+
+    this._userService.updateUser(userToUpdate).subscribe(() => {
+      this.successMessage = 'Your changes have been succesfully saved.'
+      setTimeout (() => {
+        this.successMessage = '';
+    }, 2500);
+    });
   }
 
   ngOnDestroy(): void {
